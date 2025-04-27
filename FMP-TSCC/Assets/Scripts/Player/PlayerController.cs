@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     RaycastHit hit;
     bool canCast;
+    public int groundDetected, airDetected;
+    Vector3 moveDir;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,14 +54,22 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 moveDir = new Vector3(-horizontalInput, 0, verticalInput);
+        moveDir = new Vector3(-horizontalInput, 0, verticalInput);
     
         Vector3 camRotation = cam.transform.localEulerAngles; //grab camera rotation
         plHead.transform.rotation = Quaternion.Euler(plHead.transform.localEulerAngles.x, camRotation.y, plHead.transform.localEulerAngles.z); //apply cam rotation to head
 
         moveDir = Quaternion.AngleAxis(camTransform.rotation.eulerAngles.y, Vector3.up) * moveDir;
 
-        rb.AddForce(moveDir * moveSpeed, ForceMode.Impulse);
+        if(isGrounded)
+        {
+            rb.AddForce(moveDir * moveSpeed, ForceMode.Impulse);
+        }
+        else
+        {
+            rb.AddForce(moveDir * (moveSpeed*2), ForceMode.Impulse);
+        }
+        
     }
 
     void Jump()
@@ -67,6 +77,7 @@ public class PlayerController : MonoBehaviour
         if(isGrounded)
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            rb.AddForce(moveDir * (jumpHeight/2), ForceMode.Impulse);
             StartCoroutine(JumpDelay());
             isGrounded = false;
             
@@ -78,16 +89,17 @@ public class PlayerController : MonoBehaviour
 
         if(Physics.Raycast(groundCheckTransform.position, Vector3.down, out hit, groundDistance))
         {
-            if((hit.collider.gameObject.CompareTag("Environment")))
+            if((hit.collider.tag == ("Environment")))
                 {
+                    groundDetected++;
                     isGrounded = true;
                     calcGravity = gravity;
-                }
-                else
-                {
-                    isGrounded = false;
-                }
-                
+                }  
+        }
+        else
+        {
+            airDetected++;
+            isGrounded = false;
         }
     }
 
