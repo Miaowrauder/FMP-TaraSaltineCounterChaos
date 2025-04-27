@@ -1,0 +1,111 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public bool canMove, isGrounded;
+    public float moveSpeed, jumpHeight, groundDistance, gravity;
+    float calcGravity;
+    public Transform camTransform, groundCheckTransform;
+    public GameObject plHead, cam;
+    Rigidbody rb;
+    RaycastHit hit;
+    bool canCast;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        canMove = true;
+        rb = GetComponent<Rigidbody>();
+        canCast = true;
+        isGrounded = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(canCast)
+        {
+            DownCast();
+        }
+        
+        if(Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
+        
+    }
+
+    void FixedUpdate()
+    {
+        if(canMove)
+        {
+            Move();
+        }
+
+        Gravity();
+    }
+
+    void Move()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 moveDir = new Vector3(-horizontalInput, 0, verticalInput);
+    
+        Vector3 camRotation = cam.transform.localEulerAngles; //grab camera rotation
+        plHead.transform.rotation = Quaternion.Euler(plHead.transform.localEulerAngles.x, camRotation.y, plHead.transform.localEulerAngles.z); //apply cam rotation to head
+
+        moveDir = Quaternion.AngleAxis(camTransform.rotation.eulerAngles.y, Vector3.up) * moveDir;
+
+        rb.AddForce(moveDir * moveSpeed, ForceMode.Impulse);
+    }
+
+    void Jump()
+    {
+        if(isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            StartCoroutine(JumpDelay());
+            isGrounded = false;
+            
+        }     
+    }
+
+    void DownCast()
+    {
+
+        if(Physics.Raycast(groundCheckTransform.position, Vector3.down, out hit, groundDistance))
+        {
+            if((hit.collider.gameObject.CompareTag("Environment")))
+                {
+                    isGrounded = true;
+                    calcGravity = gravity;
+                }
+                else
+                {
+                    isGrounded = false;
+                }
+                
+        }
+    }
+
+    public IEnumerator JumpDelay()
+    {   
+        canCast = false;
+        yield return new WaitForSeconds(0.1f);
+        canCast = true;
+    }
+
+    void Gravity()
+    {
+        if(isGrounded == false)
+        {
+            rb.AddForce(Vector3.down * calcGravity, ForceMode.Impulse);
+            calcGravity += (calcGravity * 0.02f);
+        }
+    }
+    
+
+}
