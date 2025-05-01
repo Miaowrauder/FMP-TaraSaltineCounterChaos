@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.AddForce(moveDir * (moveSpeed*2), ForceMode.Impulse);
+            rb.AddForce(moveDir * (moveSpeed/2), ForceMode.Impulse);
         }
         
     }
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         if(isGrounded)
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-            rb.AddForce(moveDir * (jumpHeight/2), ForceMode.Impulse);
+            rb.AddForce(moveDir * (jumpHeight*0.4f), ForceMode.Impulse);
             StartCoroutine(JumpDelay());
             isGrounded = false;
             

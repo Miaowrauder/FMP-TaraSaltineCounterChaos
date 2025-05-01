@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2c5627a97aff94eb26e4341dcfc1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishID: 0
+  dishID: 4
   minigameID: 050000000300000006000000
 --- !u!1 &5518065351034102799
 GameObject:
