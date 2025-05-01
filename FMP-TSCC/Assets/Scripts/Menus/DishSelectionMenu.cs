@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DishSelectionMenu : MonoBehaviour
 {
@@ -15,20 +16,61 @@ public class DishSelectionMenu : MonoBehaviour
     public GameObject[] dishButtonPrefab; //buttons to spawn in slot
     public Transform[] dishButtonSlot; //slots to spawn buttons in
     // Start is called before the first frame update
+
+    [Header("Screen 2 Onwards")]
+    public int selectedDishID;
+    public int[] selectedMinigameIDs;
+    public GameObject[] previewPrefab;
+    public Transform[] previewSlot;
+
+    [Header("Screen Switching")]
+    public bool triggerScreen0;
+    public bool triggerScreen1;
+    public bool triggerScreen2;
+    public Canvas screen1;
+    public Canvas screen2;
+    public Canvas screen0;
     void Start()
     {
         DeclareArrays();
-        filteredIngredient = 9;
-        IconSpawn();
+        triggerScreen0 = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         menuBacking.transform.position = new Vector3(960, scrollSlider.value, 0);
+
+        if(triggerScreen2)
+        {
+            triggerScreen2 = false;
+            screen2.enabled = true;
+            screen1.enabled = false;
+            screen0.enabled = false;
+            PreviewSpawn();
+        }
+        
+        if(triggerScreen1)
+        {
+            triggerScreen1 = false;
+            screen1.enabled = true;
+            screen2.enabled = false;
+            screen0.enabled = false;
+
+            filteredIngredient = 9;
+            IconSpawn();
+        }
+
+        if(triggerScreen0)
+        {
+            triggerScreen0 = false;
+            screen1.enabled = false;
+            screen2.enabled = false;
+            screen0.enabled = true;
+        }
     }
 
-    void IconSpawn()
+    void IconWipe()
     {
         GameObject[] oldIcons = (GameObject.FindGameObjectsWithTag("TempIcon"));
 
@@ -36,6 +78,11 @@ public class DishSelectionMenu : MonoBehaviour
         {
             Destroy(oldIcons[c]);
         }
+    }
+
+    void IconSpawn() //screen 1 dish icons
+    {
+        IconWipe();
 
         if(filteredIngredient == 9) //behaviour when not filtering for ingredient
         {
@@ -60,10 +107,22 @@ public class DishSelectionMenu : MonoBehaviour
                     a++; //only moves to next slot if icon is spawned succesfully 
                 }
                 
-
-            
             }
 
+        }
+
+    }
+
+    void PreviewSpawn() //screen 2 minigame previews
+    {
+        IconWipe();
+
+        for(int d = 0; d < selectedMinigameIDs.Length; d++) //repeat for every minigame in chosen dish
+        {
+
+            GameObject preview = Instantiate(previewPrefab[selectedMinigameIDs[d]], previewSlot[d].transform.position, Quaternion.identity); //spawn button at slots in order
+            preview.transform.parent = previewSlot[d];   
+            
         }
 
     }
@@ -122,6 +181,7 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; //if is filtering for it, undo filter
         }
         
+        IconWipe();
         IconSpawn();
     }
 
@@ -136,6 +196,7 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; 
         }
 
+        IconWipe();
         IconSpawn();
     }
 
@@ -150,6 +211,7 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; 
         }
 
+        IconWipe();
         IconSpawn();
     }
 
@@ -164,6 +226,7 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; 
         }
 
+        IconWipe();
         IconSpawn();
     }
 
@@ -178,6 +241,7 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; 
         }
 
+        IconWipe();
         IconSpawn();
     }
 
@@ -192,6 +256,7 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; 
         }
         
+        IconWipe();
         IconSpawn();
     }
 
@@ -206,6 +271,7 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; 
         }
 
+        IconWipe();
         IconSpawn();
     }
 
@@ -220,6 +286,7 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; 
         }
 
+        IconWipe();
         IconSpawn();
     }
 
@@ -234,7 +301,30 @@ public class DishSelectionMenu : MonoBehaviour
             filteredIngredient = 9; 
         }
 
+        IconWipe();
         IconSpawn();
+    }
+
+    public void OnBack()
+    {
+        triggerScreen1 = true;
+    }
+
+    public void OnBackToMenu()
+    {
+        triggerScreen0 = true;
+    }
+
+    public void OnAdvanceToGame()
+    {
+        GameObject dnd = GameObject.Find("Data Holder");
+        dnd.GetComponent<DataHolder>().dishID = selectedDishID;
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void OnQuit()
+    {
+        Application.Quit();  
     }
 
 }
