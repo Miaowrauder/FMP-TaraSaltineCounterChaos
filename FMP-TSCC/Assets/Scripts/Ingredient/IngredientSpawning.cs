@@ -40,11 +40,15 @@ public class IngredientSpawning : MonoBehaviour
         isSpawning = true;
         yield return new WaitForSeconds(spawnDelay);
 
-        if(spawnType == 0)
+        if(isActive)
         {
-            Vector3 spawnPos = new Vector3(Random.Range(minX, maxX), setY, Random.Range(minZ, maxZ));
-            GameObject item = Instantiate(spawnedPrefab, spawnPos, Quaternion.identity);
+            if(spawnType == 0)
+            {
+                Vector3 spawnPos = new Vector3(Random.Range(minX, maxX), setY, Random.Range(minZ, maxZ));
+                GameObject item = Instantiate(spawnedPrefab, spawnPos, Quaternion.identity);
+            }   
         }
+        
 
         isSpawning = false;
     }

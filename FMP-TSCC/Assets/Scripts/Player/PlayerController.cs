@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool canMove, isGrounded;
+    public bool canMove, isGrounded, canGravity, canJump;
     public float moveSpeed, jumpHeight, groundDistance, gravity;
     float calcGravity;
     public Transform camTransform, groundCheckTransform;
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         canMove = true;
+        canJump = true;
+        canGravity = true;
         rb = GetComponent<Rigidbody>();
         canCast = true;
         isGrounded = true;
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
             DownCast();
         }
         
-        if(Input.GetButtonDown("Jump"))
+        if(canJump && (Input.GetButtonDown("Jump")))
         {
             Jump();
         }
@@ -46,7 +48,11 @@ public class PlayerController : MonoBehaviour
             Move();
         }
 
-        Gravity();
+        if(canGravity)
+        {
+            Gravity();
+        }
+        
     }
 
     void Move()
