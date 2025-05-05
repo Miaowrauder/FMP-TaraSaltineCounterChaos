@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     RaycastHit hit;
     bool canCast;
-    public int groundDetected, airDetected;
     Vector3 moveDir;
+    public LayerMask layerMask;
+    public GameObject mountPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,11 @@ public class PlayerController : MonoBehaviour
         if(canJump && (Input.GetButtonDown("Jump")))
         {
             Jump();
+        }
+
+        if(!canMove && (mountPos != null))
+        {
+            this.transform.position = mountPos.transform.position;
         }
         
     }
@@ -93,18 +99,16 @@ public class PlayerController : MonoBehaviour
     void DownCast()
     {
 
-        if(Physics.Raycast(groundCheckTransform.position, Vector3.down, out hit, groundDistance))
+        if(Physics.Raycast(groundCheckTransform.position, Vector3.down, out hit, groundDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
             if((hit.collider.tag == ("Environment")))
                 {
-                    groundDetected++;
                     isGrounded = true;
                     calcGravity = gravity;
                 }  
         }
         else
         {
-            airDetected++;
             isGrounded = false;
         }
     }
@@ -122,6 +126,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.down * calcGravity, ForceMode.Impulse);
             calcGravity += (calcGravity * 0.02f);
+        }
+    }
+
+    public void OnTriggerEnter(Collider coll)
+    {
+        if(coll.tag == ("RespawnHazard"))
+        {
+            GameObject spawnPoint = GameObject.FindWithTag("SpawnPoint");
+            this.transform.position = spawnPoint.transform.position;
         }
     }
     

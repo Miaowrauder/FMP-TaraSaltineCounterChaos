@@ -229,6 +229,9 @@ public class GeneralManager : MonoBehaviour
         gameScore[game] = (pl.GetComponent<IngredientHolder>().heldIngredients / pl.GetComponent<IngredientHolder>().maxIngredients); //converts held & max ingredients into a score value from 0 to 1 (easier to use in scaling later, 1 being perfect)
         pl.GetComponent<IngredientHolder>().heldIngredients = 0f;
 
+        pl.GetComponent<IngredientHolder>().ingSlider.maxValue = pl.GetComponent<IngredientHolder>().maxIngredients;
+        pl.GetComponent<IngredientHolder>().ingSlider.value = pl.GetComponent<IngredientHolder>().heldIngredients;
+
         GameObject[] gamePieces = GameObject.FindGameObjectsWithTag("Game Piece");
 
         GameObject ingSpawner = GameObject.Find("Ingredient Spawning");
@@ -246,6 +249,8 @@ public class GeneralManager : MonoBehaviour
             game++;
         }
         
+        pl.GetComponent<PlayerController>().canMove = true;
+        pl.GetComponent<PlayerController>().canGravity = true;
         
         if(game >= minigameID.Length)
         {

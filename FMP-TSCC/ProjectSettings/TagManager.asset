@@ -11,6 +11,9 @@ TagManager:
   - Prep Stopper
   - PrepController
   - SelectionManager
+  - Ramp
+  - RespawnHazard
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
