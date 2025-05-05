@@ -5,7 +5,7 @@ using UnityEngine;
 public class IngredientMove : MonoBehaviour
 {
     public float speed;
-    public bool isStop, isDown, isForward;
+    public bool isStop, isDown, isForward, isDecay;
     public GameObject shadowPrefab;
     GameObject shadow;
     public Transform castPos;
@@ -23,6 +23,11 @@ public class IngredientMove : MonoBehaviour
         if(isForward)
         {
             transform.Translate(Vector3.forward * (Time.deltaTime * speed));
+
+            if(isDecay && (speed > 0f))
+            {
+                speed -= 0.001f;
+            }
         }
         else if(isDown)
         {
