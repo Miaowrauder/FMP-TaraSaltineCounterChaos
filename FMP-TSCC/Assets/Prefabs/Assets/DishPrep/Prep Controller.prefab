@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7640848198047242760}
   m_Layer: 0
   m_Name: Prep Controller
-  m_TagString: Untagged
+  m_TagString: PrepController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,4 +45,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  prepUI: {fileID: 0}
+  buttonTrigger: 0
+  placerState: 0
+  placerPrefab: {fileID: 713625723641733464, guid: 576f5ba56f1e7e048b9a17993e469ef2,
+    type: 3}
+  vesselID: 0
+  ingID: 0
+  vesselPrefab:
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  - {fileID: 4893245274367929370, guid: 5c04f68a27ea6274f989a1d5815fb6aa, type: 3}
+  ingPrefab:
+  - {fileID: 3305498836758653633, guid: d32e892f6a4eaf842b27641b978fc007, type: 3}
+  - {fileID: 7842990239190732424, guid: 761aa89acc83da5408ec61492a03182d, type: 3}
+  - {fileID: 5851650949300832696, guid: 2c560534d7f54fc40a61f2f64bbd04ee, type: 3}

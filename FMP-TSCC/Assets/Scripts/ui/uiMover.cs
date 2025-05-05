@@ -6,7 +6,7 @@ public class uiMover : MonoBehaviour
 {
     public Transform movePosition;
     public float moveSpeed;
-    public bool canMove;
+    public bool canMove, multiPoints;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,14 @@ public class uiMover : MonoBehaviour
         if(canMove)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, movePosition.position, (moveSpeed * Time.deltaTime));
+        }
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if(coll.tag == "Swapper")
+        {
+            moveSpeed = (moveSpeed - moveSpeed * 2); //flips speed
         }
     }
 }

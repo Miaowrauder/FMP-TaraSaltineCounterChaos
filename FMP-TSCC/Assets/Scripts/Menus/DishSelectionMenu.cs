@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DishSelectionMenu : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class DishSelectionMenu : MonoBehaviour
     public Canvas screen1;
     public Canvas screen2;
     public Canvas screen0;
+
+    [Header("Score")]
+    public float[] dishScore;
+    public GameObject textPrefab;
     void Start()
     {
         DeclareArrays();
@@ -90,7 +95,13 @@ public class DishSelectionMenu : MonoBehaviour
             {
 
                 GameObject icon = Instantiate(dishButtonPrefab[b], dishButtonSlot[b].transform.position, Quaternion.identity); //spawn button at slots in order
-                icon.transform.parent = dishButtonSlot[b];   
+                icon.transform.parent = dishButtonSlot[b];
+
+                
+                    GameObject scoretext = Instantiate(textPrefab, dishButtonSlot[b].transform.position, Quaternion.identity);
+                    scoretext.transform.parent = dishButtonSlot[b];
+                    scoretext.GetComponent<TMP_Text>().text = (" " + dishScore[b] + "%");
+                   
             
             }
         }
@@ -104,6 +115,11 @@ public class DishSelectionMenu : MonoBehaviour
                 {
                     GameObject icon = Instantiate(dishButtonPrefab[b], dishButtonSlot[a].transform.position, Quaternion.identity); //spawn button at slots in order, but skip to next dish if ingredient selected is not obtained
                     icon.transform.parent = dishButtonSlot[a];
+
+                    GameObject scoretext = Instantiate(textPrefab, dishButtonSlot[a].transform.position, Quaternion.identity);
+                    scoretext.transform.parent = dishButtonSlot[a];
+                    scoretext.GetComponent<TMP_Text>().text = (" " + dishScore[a] + "%");
+
                     a++; //only moves to next slot if icon is spawned succesfully 
                 }
                 
@@ -168,6 +184,8 @@ public class DishSelectionMenu : MonoBehaviour
         dishID[9,0] = 2; 
         dishID[9,1] = 8; 
         dishID[9,2] = 3; //bloody mary soup, jui, sug, veg
+
+        dishScore = new float[10];
     }
 
     public void OnFilter0() //was gonna do this in one function, and grab an id assigned to the filter buttons but didnt think it was worth the time/effort figuring out how to get the manager canvas to recognise which button triggered the function and read its ID

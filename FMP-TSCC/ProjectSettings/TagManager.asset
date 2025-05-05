@@ -8,6 +8,9 @@ TagManager:
   - TempIcon
   - Manager
   - Game Piece
+  - Prep Stopper
+  - PrepController
+  - SelectionManager
   layers:
   - Default
   - TransparentFX

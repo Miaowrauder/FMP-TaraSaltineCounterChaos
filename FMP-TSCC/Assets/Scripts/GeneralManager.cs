@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cinemachine;
+using TMPro;
 
 public class GeneralManager : MonoBehaviour
 {
@@ -14,11 +16,15 @@ public class GeneralManager : MonoBehaviour
     public GameObject pl;
     public float[] gameScore;
     public float gameDuration, breakDuration;
-    public bool gameTrigger, breakTrigger;
+    public bool gameTrigger, breakTrigger, endTrigger;
     private int game;
-    GameObject tc;
+    public Canvas endCanvas;
+    public TMP_Text endScore;
+    GameObject tc, dpc;
+    
     void Start()
     {
+        endCanvas.enabled = false;
         tc = GameObject.Find("In-Game UI");
         dnd = GameObject.Find("Data Holder");
         pl = GameObject.FindWithTag("Player");
@@ -40,6 +46,12 @@ public class GeneralManager : MonoBehaviour
             breakTrigger = false;
             InitiateBreak();
         }
+
+        if(endTrigger)
+        {
+            endTrigger = false;
+            InitiateEnd();
+        }
     }
 
     void DecodeID()
@@ -52,6 +64,12 @@ public class GeneralManager : MonoBehaviour
             minigameID[0] = 0; 
             minigameID[1] = 1; 
             minigameID[2] = 2; //ouzo halloumi, chs,oil,jui
+
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; //No visuals, so prep ingredients are set to a basic set to demonstrate system - system works for different ingredients
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
         }
         else if(dishID == 1)
         {
@@ -64,6 +82,12 @@ public class GeneralManager : MonoBehaviour
            // minigameID[1] = 3; 
            // minigameID[2] = 4; //pizz, chs, veg, whe
 
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
+
         }
         else if(dishID == 2)
         {
@@ -73,6 +97,12 @@ public class GeneralManager : MonoBehaviour
             minigameID[0] = 1; 
             minigameID[1] = 5; 
             minigameID[2] = 4; //calamari, oil,squ,whe
+
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
         }
         else if(dishID == 3)
         {
@@ -82,6 +112,12 @@ public class GeneralManager : MonoBehaviour
             minigameID[0] = 0; 
             minigameID[1] = 6; 
             minigameID[2] = 4; //strawb risotto, chs,fru,whe
+
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
         }
         else if(dishID == 4)
         {
@@ -91,6 +127,12 @@ public class GeneralManager : MonoBehaviour
             minigameID[0] = 5; 
             minigameID[1] = 3; 
             minigameID[2] = 6; //simmered squid, squ,veg,fru
+
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
         }
         else if(dishID == 5)
         {
@@ -101,6 +143,12 @@ public class GeneralManager : MonoBehaviour
             minigameID[1] = 2; 
             minigameID[2] = 3; //coq au vin, chi, jui, veg
 
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
+
         }
         else if(dishID == 6)
         {
@@ -110,6 +158,12 @@ public class GeneralManager : MonoBehaviour
             minigameID[0] = 7; 
             minigameID[1] = 8; 
             minigameID[2] = 4; //chicken laska, chi,sug,whe
+
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
         }
         else if(dishID == 7)
         {
@@ -119,6 +173,12 @@ public class GeneralManager : MonoBehaviour
             minigameID[0] = 7; 
             minigameID[1] = 5; 
             minigameID[2] = 3; //paella, chi,squ,veg
+
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
         }
         else if(dishID == 8)
         {
@@ -128,7 +188,14 @@ public class GeneralManager : MonoBehaviour
             minigameID[0] = 1; 
             minigameID[1] = 8; 
             minigameID[2] = 6; //pineapple steak, oil,sug,fru
+
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
         }
+
         else if(dishID == 9)
         {
             minigameID = new int[3];
@@ -137,6 +204,12 @@ public class GeneralManager : MonoBehaviour
             minigameID[0] = 2; 
             minigameID[1] = 8; 
             minigameID[2] = 3; //bloody mary soup, jui, sug, veg
+
+            prepIngredientID = new int[3];
+
+            prepIngredientID[0] = 0; 
+            prepIngredientID[1] = 1;
+            prepIngredientID[2] = 2;
         }
 
     }
@@ -190,6 +263,22 @@ public class GeneralManager : MonoBehaviour
         pl.GetComponent<PlayerController>().canMove = false;
         pl.GetComponent<PlayerController>().canJump = false;
         pl.GetComponent<PlayerController>().canGravity = false;
+    }
+
+    public void InitiateEnd()
+    {
+        endCanvas.enabled = true;
+
+        dpc = GameObject.FindWithTag("PrepController"); 
+        endScore.text = (" " + dpc.GetComponent<DishPrepController>().avgScore + "%");
+    }
+
+    public void OnEnd()
+    {
+        GameObject dh = GameObject.Find("Data Holder");
+        dh.GetComponent<DataHolder>().savedScore = dpc.GetComponent<DishPrepController>().avgScore;
+        dh.GetComponent<DataHolder>().isReturning = true;
+        SceneManager.LoadScene("PreGameScene");
     }
 
 }
