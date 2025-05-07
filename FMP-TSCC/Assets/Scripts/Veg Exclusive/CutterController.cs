@@ -18,6 +18,8 @@ public class CutterController : MonoBehaviour
     public LayerMask layerMask;
     public bool isGrounded;
     public Transform castPos;
+    bool canCheck;
+    float currentAirtime;
     void Start()
     {
         currentAcceleration = 0f;
@@ -34,6 +36,12 @@ public class CutterController : MonoBehaviour
     void Update()
     {
         DownCast();
+
+        if(currentAirtime > 4f)
+        {
+            currentAirtime = 0f;
+            Respawn();
+        }
     }
 
     void FixedUpdate()
@@ -65,6 +73,16 @@ public class CutterController : MonoBehaviour
         cutterWheel.steerAngle = -currentTurnAngle;
         rCutterWheel.steerAngle = -currentTurnAngle;
 
+        if(isGrounded)
+        {
+            currentAirtime = 0f;
+        }
+        if(!isGrounded && canCheck)
+        {
+            canCheck = false;
+            StartCoroutine(FlipCheck());
+        }
+
     }
 
     public void OnTriggerEnter(Collider coll)
@@ -84,7 +102,7 @@ public class CutterController : MonoBehaviour
     void DownCast()
     {
 
-        if(Physics.Raycast(castPos.position, Vector3.down, out hit, 0.7f, layerMask, QueryTriggerInteraction.Ignore))
+        if(Physics.Raycast(castPos.position, -castPos.transform.up, out hit, 0.7f, layerMask, QueryTriggerInteraction.Ignore))
         {
             if((hit.collider.tag == ("Environment")))
             {
@@ -97,7 +115,19 @@ public class CutterController : MonoBehaviour
         }
     }
 
+    public IEnumerator FlipCheck()
+    {
+        yield return new WaitForSeconds(0.2f);
+        currentAirtime += 0.2f;
+        canCheck = true;
+    }
 
+    void Respawn()
+    {
+        GameObject spawnPoint = GameObject.FindWithTag("SpawnPoint");
+        this.transform.position = spawnPoint.transform.position;
+        this.transform.rotation = Quaternion.identity;
+    }
     
 
 }

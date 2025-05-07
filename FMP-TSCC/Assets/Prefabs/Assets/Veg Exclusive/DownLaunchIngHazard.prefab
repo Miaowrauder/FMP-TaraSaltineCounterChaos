@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8349683312299200623}
   - component: {fileID: -8854212901640965585}
   m_Layer: 0
-  m_Name: DownLaunchIng
+  m_Name: DownLaunchIngHazard
   m_TagString: Game Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,9 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb664477c9fe72342a1f79a534680a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appliedValue: 5
+  appliedValue: -5
   repeatedDelay: 0
-  visualID: 0
+  visualID: 1
   visualPrefab:
   - {fileID: 6727700042984961697, guid: 9c1179c09eb3ddd4aaf59d633063fbdd, type: 3}
   - {fileID: 6727700042984961697, guid: a49c33660c9b67d4f9bc1f1dcd9c119a, type: 3}
@@ -83,6 +83,7 @@ MonoBehaviour:
   isStop: 1
   isDown: 1
   isForward: 0
+  isDecay: 0
   shadowPrefab: {fileID: 7563828887424938245, guid: 52edf0f890562684aa61b3686cab3b1c,
     type: 3}
   castPos: {fileID: 4432660582829419647}

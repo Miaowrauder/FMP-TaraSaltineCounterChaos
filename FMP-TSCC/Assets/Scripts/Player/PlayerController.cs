@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool canMove, isGrounded, canGravity, canJump;
+    public bool canMove, isGrounded, canGravity, canJump, canFly;
     public float moveSpeed, jumpHeight, groundDistance, gravity;
     float calcGravity;
     public Transform camTransform, groundCheckTransform;
@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDir;
     public LayerMask layerMask;
     public GameObject mountPos;
+    [Header("Flight Details")]
+    public float flightSpeed;
+    float activeFlightSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,24 @@ public class PlayerController : MonoBehaviour
         {
             this.transform.position = mountPos.transform.position;
         }
+
+        if(canFly)
+        {
+            if(Input.GetKey(KeyCode.W))
+            {
+                activeFlightSpeed = flightSpeed;
+            }
+            else if(Input.GetKey(KeyCode.S))
+            {
+                activeFlightSpeed = -flightSpeed;
+            }
+            else
+            {
+                activeFlightSpeed = 0f;
+            }
+        }
+
+        
         
     }
 
@@ -53,12 +74,33 @@ public class PlayerController : MonoBehaviour
         {
             Move();
         }
+        else if(canFly);
+        {
+            Fly();
+        }
 
         if(canGravity)
         {
             Gravity();
         }
         
+        
+    }
+
+    void Fly()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 camForward = new Vector3(cam.transform.forward.x, cam.transform.forward.y, cam.transform.forward.z); //gets the cameras facing transform as a vector3
+
+        Vector3 camRotation = cam.transform.localEulerAngles; //gets the cameras rotation as a vector 3 but takes into account some parenty stuff
+        plHead.transform.rotation = Quaternion.Euler(camRotation.x, camRotation.y, plHead.transform.localEulerAngles.z); //set head to show movement direction
+
+        moveDir = camForward.normalized; //set movement direction as wherever the camera points to
+
+        rb.AddForce(moveDir * activeFlightSpeed, ForceMode.Impulse); //add ya force
+
     }
 
     void Move()

@@ -232,14 +232,21 @@ public class GeneralManager : MonoBehaviour
         pl.GetComponent<IngredientHolder>().ingSlider.maxValue = pl.GetComponent<IngredientHolder>().maxIngredients;
         pl.GetComponent<IngredientHolder>().ingSlider.value = pl.GetComponent<IngredientHolder>().heldIngredients;
 
-        GameObject[] gamePieces = GameObject.FindGameObjectsWithTag("Game Piece");
-
         GameObject ingSpawner = GameObject.Find("Ingredient Spawning");
         ingSpawner.GetComponent<IngredientSpawning>().isActive = false;
+
+        GameObject[] gamePieces = GameObject.FindGameObjectsWithTag("Game Piece");
 
         for(int a = 0; a < gamePieces.Length; a++) //destroy all game pieces in arena
         {
             Destroy(gamePieces[a]);
+        } 
+
+        GameObject[] ingSpots = GameObject.FindGameObjectsWithTag("IngSpot");
+
+        for(int a = 0; a < gamePieces.Length; a++) //destroy all ing spots
+        {
+            Destroy(ingSpots[a]);
             tc.GetComponent<TimerController>().inBreakState = true;
             tc.GetComponent<TimerController>().inGameState = false;
         } 

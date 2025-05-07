@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3088738706478358874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2874086406966028536}
+  - component: {fileID: 5573838499495040725}
+  m_Layer: 0
+  m_Name: Cheese Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2874086406966028536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088738706478358874}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.253, y: 0.36481622, z: 18.871681}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5573838499495040725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088738706478358874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f67ab577f82b9545a043826de0e62b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredientPrefab: {fileID: 5033986879014534887, guid: b9c54c77478fc624b8bd9fe24779f53e,
+    type: 3}
+  dualIngredientPrefab: {fileID: 6970006278783545934, guid: 30cc9a37ef48c2545a818dd70356dcdf,
+    type: 3}
+  mapPrefab: {fileID: 2372472986148560403, guid: b587511e66aad8f40b08ca2f55a1f195,
+    type: 3}
+  moonPrefabs:
+  - {fileID: 4536003163452251437, guid: fab3f3311be39f9438331e4ed0a816ba, type: 3}
+  - {fileID: 3827466158803177965, guid: 92488b87e2f74174896fa75cf3f1dd0e, type: 3}
+  - {fileID: 3730347413163169835, guid: b8ceb1201b2d09d468c183a6015f3c94, type: 3}

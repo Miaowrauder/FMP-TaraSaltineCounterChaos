@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 80552461965655335, guid: 2f2eda1bc051d5a41af4531c66e49627,
     type: 3}
+  ingredientPrefab2: {fileID: 80552461965655335, guid: 74b98381904ef6742a255d8ed3bdd54b,
+    type: 3}
   cutterPrefab: {fileID: 7676724006247229203, guid: 62f3308c4e4cb654583ddc9dc006bc15,
     type: 3}
   mapPrefab: {fileID: 570365824508183271, guid: a2e50126db350c94eacf859c43b42138,

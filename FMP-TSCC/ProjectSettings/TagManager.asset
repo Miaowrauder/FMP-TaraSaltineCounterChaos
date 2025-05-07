@@ -14,6 +14,8 @@ TagManager:
   - Ramp
   - RespawnHazard
   - SpawnPoint
+  - Timer
+  - IngSpot
   layers:
   - Default
   - TransparentFX
