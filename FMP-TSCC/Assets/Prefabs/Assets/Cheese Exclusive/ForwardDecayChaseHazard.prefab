@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredient: {fileID: 6970006278783545934}
   isRun: 0
-  chaseSpeed: 3
-  radius: 7
+  chaseSpeed: 4
+  radius: 10
 --- !u!1 &6970006278783545934
 GameObject:
   m_ObjectHideFlags: 0

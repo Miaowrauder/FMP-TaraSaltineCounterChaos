@@ -50,6 +50,12 @@ public class PickupBehaviour : MonoBehaviour
                 }
             }
         }
+        else if(coll.tag == "UfoBeam")
+        {
+            pl.GetComponent<IngredientHolder>().heldIngredients += appliedValue;
+            pl.GetComponent<IngredientHolder>().update = true;
+            Destroy(this.gameObject);
+        }
         
     }
 

@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             Move();
         }
-        else if(canFly);
+        if(canFly);
         {
             Fly();
         }

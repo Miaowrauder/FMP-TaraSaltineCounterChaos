@@ -21,6 +21,8 @@ public class GeneralManager : MonoBehaviour
     public Canvas endCanvas;
     public TMP_Text endScore;
     GameObject tc, dpc;
+
+    public int initiatedGame, initiatedBreak;
     
     void Start()
     {
@@ -77,10 +79,8 @@ public class GeneralManager : MonoBehaviour
             gameScore = new float[3];
             
             minigameID[0] = 0; 
-            minigameID[1] = 0; 
-            minigameID[2] = 0; //temp for testing
-           // minigameID[1] = 3; 
-           // minigameID[2] = 4; //pizz, chs, veg, whe
+            minigameID[1] = 3; 
+            minigameID[2] = 4; //pizz, chs, veg, whe
 
             prepIngredientID = new int[3];
 
@@ -216,11 +216,13 @@ public class GeneralManager : MonoBehaviour
 
     public void InitiateGame()
     {
-        GameObject gc = Instantiate(gameController[minigameID[game]]);
+        GameObject gc = Instantiate(gameController[(minigameID[game])]);
 
         GameObject tc = GameObject.Find("In-Game UI");
         tc.GetComponent<TimerController>().inBreakState = false;
         tc.GetComponent<TimerController>().inGameState = true;
+
+        initiatedGame++;
     }
 
     public void InitiateBreak()
@@ -235,23 +237,31 @@ public class GeneralManager : MonoBehaviour
         GameObject ingSpawner = GameObject.Find("Ingredient Spawning");
         ingSpawner.GetComponent<IngredientSpawning>().isActive = false;
 
-        GameObject[] gamePieces = GameObject.FindGameObjectsWithTag("Game Piece");
+        GameObject[] ingSpots = GameObject.FindGameObjectsWithTag("Game Piece");
 
-        for(int a = 0; a < gamePieces.Length; a++) //destroy all game pieces in arena
+        for(int a = 0; a < ingSpots.Length; a++) //destroy all game pieces in arena
         {
-            Destroy(gamePieces[a]);
+            Destroy(ingSpots[a]);
         } 
 
-        GameObject[] ingSpots = GameObject.FindGameObjectsWithTag("IngSpot");
+        GameObject[] windColls = GameObject.FindGameObjectsWithTag("WindCollider");
+
+        for(int a = 0; a < windColls.Length; a++) //destroy all game pieces in arena
+        {
+            Destroy(windColls[a]);
+        } 
+
+        GameObject[] gamePieces = GameObject.FindGameObjectsWithTag("IngSpot");
 
         for(int a = 0; a < gamePieces.Length; a++) //destroy all ing spots
         {
-            Destroy(ingSpots[a]);
-            tc.GetComponent<TimerController>().inBreakState = true;
-            tc.GetComponent<TimerController>().inGameState = false;
-        } 
+            Destroy(gamePieces[a]);
+        }
 
-        if(game < minigameID.Length)
+        tc.GetComponent<TimerController>().inBreakState = true;
+        tc.GetComponent<TimerController>().inGameState = false; 
+
+        if(game <= minigameID.Length)
         {
             game++;
         }
@@ -263,6 +273,8 @@ public class GeneralManager : MonoBehaviour
         {
             InitiatePrep();
         }
+
+         initiatedBreak++;
 
         
         

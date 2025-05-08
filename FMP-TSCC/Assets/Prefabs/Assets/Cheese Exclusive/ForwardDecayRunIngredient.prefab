@@ -184,5 +184,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredient: {fileID: 5033986879014534887}
   isRun: 1
-  chaseSpeed: 2
+  chaseSpeed: 3
   radius: 6

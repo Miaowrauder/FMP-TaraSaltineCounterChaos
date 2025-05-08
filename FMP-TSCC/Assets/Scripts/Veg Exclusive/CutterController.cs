@@ -89,7 +89,7 @@ public class CutterController : MonoBehaviour
     {
         if((coll.tag == "Ramp") && (isGrounded == true))
         {
-            rb.AddForce(Vector3.up * 7000, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 8500, ForceMode.Impulse);
         }
         if(coll.tag == ("RespawnHazard"))
         {

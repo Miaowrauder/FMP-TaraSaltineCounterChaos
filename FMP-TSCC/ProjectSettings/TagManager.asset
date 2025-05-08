@@ -16,6 +16,8 @@ TagManager:
   - SpawnPoint
   - Timer
   - IngSpot
+  - WindCollider
+  - UfoBeam
   layers:
   - Default
   - TransparentFX

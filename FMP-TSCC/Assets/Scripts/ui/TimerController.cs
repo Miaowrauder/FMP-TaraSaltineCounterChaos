@@ -29,6 +29,8 @@ public class TimerController : MonoBehaviour
 
     [Header("Prep Screen")]
     public GameObject prepPrefab;
+
+    public int breakTriggered, gameTriggered;
     // Start is called before the first frame update
     void Start()
     {
@@ -103,6 +105,8 @@ public class TimerController : MonoBehaviour
                 Destroy(bIcon);
                 gIcon = Instantiate(stateIcon[0], iconPos.position, Quaternion.identity);
                 gIcon.transform.SetParent(inGameCanvas.transform);
+
+                gameTriggered++;
             }
             else if(inGameState)
             {
@@ -111,6 +115,8 @@ public class TimerController : MonoBehaviour
                 Destroy(gIcon);
                 bIcon = Instantiate(stateIcon[1], iconPos.position, Quaternion.identity);
                 bIcon.transform.SetParent(inGameCanvas.transform);
+
+                breakTriggered++;
             }
         
     }
