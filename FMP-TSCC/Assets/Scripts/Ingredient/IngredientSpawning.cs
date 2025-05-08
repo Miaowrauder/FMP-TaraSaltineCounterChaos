@@ -23,6 +23,10 @@ public class IngredientSpawning : MonoBehaviour
     [Header("Activity / Triggers")]
     public bool isActive;
     public bool isSpawning;
+    [Header("Extras")]
+    public GameObject bonusSpawnedPrefab;
+    public int spawnsToTriggerBonus;
+    int bonusCount;
 
     
     // Start is called before the first frame update
@@ -37,6 +41,12 @@ public class IngredientSpawning : MonoBehaviour
         if(isActive && !isSpawning)
         {
             StartCoroutine(SpawnIngredient());
+        }
+
+        if(bonusCount >= spawnsToTriggerBonus)
+        {
+            BonusSpawn();
+            bonusCount = 0;
         }
     }
 
@@ -54,7 +64,11 @@ public class IngredientSpawning : MonoBehaviour
             else if(spawnType == 1)
             {
                 Spawn1();
-            }     
+            }
+            else if(spawnType == 2)
+            {
+                Spawn2();
+            }          
         }
         
 
@@ -85,7 +99,7 @@ public class IngredientSpawning : MonoBehaviour
         
     }
 
-    void Spawn1()
+    void Spawn1() //bespoke for cheese
     {
         GameObject[] moonSpots = GameObject.FindGameObjectsWithTag("IngSpot");
 
@@ -114,5 +128,73 @@ public class IngredientSpawning : MonoBehaviour
             GameObject item = Instantiate(spawnedPrefab, moonSpots[cho].transform.position, randomRot);
         }
 
+    }
+
+    void Spawn2() //bespoke for fruit
+    {
+        GameObject chosenPrefab;
+
+        if(dualSpawning)
+        {
+            int spawn2 = Random.Range(0, 11);
+
+            if(spawn2 > dualSpawnWeightOutOfTen)
+            {
+                chosenPrefab = spawnedPrefab;
+            }
+            else
+            {
+                chosenPrefab = dualSpawnedPrefab;
+            }
+        }
+        else
+        {
+            chosenPrefab = spawnedPrefab;
+        }
+
+
+        int spawnSide = Random.Range(0,4);
+
+        if(spawnSide == 0)
+        {
+            Vector3 spawnPos = new Vector3(24f, -0.4f, Random.Range(0, 46)); //set place along arena side
+
+            GameObject item = Instantiate(chosenPrefab, spawnPos, Quaternion.identity);
+            item.transform.Rotate(0, 270 ,0);
+        }
+
+        if(spawnSide == 1)
+        {   
+            Vector3 spawnPos = new Vector3(Random.Range(-30, 20), -0.4f, -8f); //set place along arena side
+
+            GameObject item = Instantiate(chosenPrefab, spawnPos, Quaternion.identity);
+        }
+
+        if(spawnSide == 2)
+        {
+            Vector3 spawnPos = new Vector3(-35f, -0.4f, Random.Range(0, 46));
+
+            GameObject item = Instantiate(chosenPrefab, spawnPos, Quaternion.identity);
+            item.transform.Rotate(0, 90 ,0);
+        }
+
+        if(spawnSide == 3)
+        {
+           Vector3 spawnPos = new Vector3(Random.Range(-30, 20), -0.4f, 48f); //set place along arena side
+
+            GameObject item = Instantiate(chosenPrefab, spawnPos, Quaternion.identity);
+            item.transform.Rotate(0, 180 ,0); 
+        }
+
+        bonusCount++;
+
+    }
+
+    void BonusSpawn()
+    {
+        Vector3 spawnPos = new Vector3(Random.Range(minX, maxX), setY, Random.Range(minZ, maxZ));
+
+        GameObject item = Instantiate(bonusSpawnedPrefab, spawnPos, Quaternion.identity);
+    
     }
 }

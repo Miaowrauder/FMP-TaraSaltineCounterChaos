@@ -22,7 +22,8 @@ public class IngredientChase : MonoBehaviour
     }
 
     void DistanceCheck()
-    {        float distance = Vector3.Distance(pl.transform.position, ingredient.transform.position);
+    {   
+        float distance = Vector3.Distance(pl.transform.position, ingredient.transform.position);
 
         if(distance < radius)
         {

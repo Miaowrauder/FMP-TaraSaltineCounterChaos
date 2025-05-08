@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool canMove, isGrounded, canGravity, canJump, canFly;
+    public bool canMove, isGrounded, canGravity, canJump, canFly, canBat;
     public float moveSpeed, jumpHeight, groundDistance, gravity;
     float calcGravity;
     public Transform camTransform, groundCheckTransform;
@@ -18,6 +18,13 @@ public class PlayerController : MonoBehaviour
     [Header("Flight Details")]
     public float flightSpeed;
     float activeFlightSpeed;
+
+    [Header("Batting Details")]
+    public LayerMask batMask;
+    RaycastHit batHit;
+    public float hitRadius;
+    public GameObject batVisual;
+    public GameObject projAlignEmpty;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +69,11 @@ public class PlayerController : MonoBehaviour
             {
                 activeFlightSpeed = 0f;
             }
+        }
+
+        if(canBat && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            BatAway();
         }
 
         
@@ -179,6 +191,38 @@ public class PlayerController : MonoBehaviour
             this.transform.position = spawnPoint.transform.position;
         }
     }
+
+    void BatAway()
+    {
+        if(Physics.Raycast(camTransform.position, camTransform.forward, out batHit, 99f, batMask)) //magnetises position towards clump point
+        {
+            if((batHit.collider.gameObject.CompareTag("Clump")))
+            {
+                projAlignEmpty.transform.position = batHit.collider.transform.position;
+            }
+        }
+        else //true aligned position
+        {
+           projAlignEmpty.transform.position = camTransform.position + camTransform.forward * 99f;
+        }
+
+        Collider[] battedIngs = Physics.OverlapSphere(this.transform.position, hitRadius);
+
+        GameObject swing = Instantiate(batVisual, this.transform.position, Quaternion.identity);
+
+        for(int l = 0; l < battedIngs.Length; l++)
+        {
+            if(battedIngs[l].gameObject.tag == "Game Piece") //prevents moving of self or environment
+            {
+                battedIngs[l].gameObject.transform.LookAt(projAlignEmpty.transform.position);
+                battedIngs[l].gameObject.GetComponent<PickupBehaviour>().beenDeflected = true;
+                battedIngs[l].gameObject.GetComponent<IngredientMove>().isHome = false;
+            }
+        }
+
+    }
+
+
     
 
 }

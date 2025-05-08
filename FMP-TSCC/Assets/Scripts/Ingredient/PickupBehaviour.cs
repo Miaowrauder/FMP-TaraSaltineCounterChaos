@@ -16,6 +16,8 @@ public class PickupBehaviour : MonoBehaviour
     [Header("Pickup Effects")]
     public int pickupBehaviourID;
     public float knockupStrength;
+    [Header("Miscellaneous")]
+    public bool beenDeflected;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +56,11 @@ public class PickupBehaviour : MonoBehaviour
         {
             pl.GetComponent<IngredientHolder>().heldIngredients += appliedValue;
             pl.GetComponent<IngredientHolder>().update = true;
+            Destroy(this.gameObject);
+        }
+        else if((coll.tag == "Clump") && (appliedValue < 0) && beenDeflected)
+        {
+            coll.GetComponent<IngredientClump>().health += appliedValue;
             Destroy(this.gameObject);
         }
         

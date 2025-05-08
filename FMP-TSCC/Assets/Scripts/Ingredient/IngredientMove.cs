@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class IngredientMove : MonoBehaviour
 {
-    public float speed;
-    public bool isStop, isDown, isForward, isDecay;
+    public float speed, homeSpeed;
+    public bool isStop, isDown, isForward, isDecay, isHome;
     public GameObject shadowPrefab;
-    GameObject shadow;
+    GameObject shadow, pl;
     public Transform castPos;
     RaycastHit hit;
     public LayerMask layerMask;
     // Start is called before the first frame update
     void Start()
     {
-       shadow = Instantiate(shadowPrefab, this.transform.position, Quaternion.identity);
+        pl = GameObject.FindWithTag("Player");
+        if(isDown)
+        {
+            shadow = Instantiate(shadowPrefab, this.transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
@@ -33,6 +37,12 @@ public class IngredientMove : MonoBehaviour
         {
             transform.Translate(Vector3.up * (Time.deltaTime * -speed));
             DownCast();
+        }
+        if(isHome)
+        {
+            Vector3 relativePos = pl.transform.position - this.transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            this.transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * homeSpeed);
         }
         
     }
