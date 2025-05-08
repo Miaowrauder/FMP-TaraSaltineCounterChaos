@@ -17,12 +17,12 @@ public class GeneralManager : MonoBehaviour
     public float[] gameScore;
     public float gameDuration, breakDuration;
     public bool gameTrigger, breakTrigger, endTrigger;
-    private int game;
+    public int game;
     public Canvas endCanvas;
     public TMP_Text endScore;
     GameObject tc, dpc;
 
-    public int initiatedGame, initiatedBreak;
+    int initiatedGame, initiatedBreak;
     
     void Start()
     {

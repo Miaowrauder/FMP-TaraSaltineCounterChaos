@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 589310803969100753}
   m_Layer: 0
   m_Name: Small Moon
-  m_TagString: IngSpot
+  m_TagString: Game Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

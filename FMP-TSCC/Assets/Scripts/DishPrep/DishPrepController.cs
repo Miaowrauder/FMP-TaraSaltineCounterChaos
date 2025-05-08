@@ -29,7 +29,7 @@ public class DishPrepController : MonoBehaviour
     bool dollyMode, canDolly;
     Camera panCamera;
     Canvas prepCanvas;
-    GameObject gm;
+    GameObject gm, pm;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +42,9 @@ public class DishPrepController : MonoBehaviour
         vesselSpawnPos = GameObject.Find("VesselPos");
         prepCanvas = prepUI.GetComponent<Canvas>();
 
-        gm = GameObject.Find("GameManager");
+        gm = GameObject.FindWithTag("Manager");
+        pm = GameObject.Find("Pause Manager");
+        pm.GetComponent<PauseAndSettings>().canPause = false;
         vesselID = gm.GetComponent<GeneralManager>().dishID;
         Instantiate(vesselPrefab[vesselID], vesselSpawnPos.transform.position, Quaternion.identity); //vessel locked to 0 for demo - visual elements like bowl for soup, base for pizza etc, essentially the extra plating for the dish
     
