@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class PlayerController : MonoBehaviour
     public GameObject projAlignEmpty;
     [Header("Speed Measurement")]
     public float currentSpeed;
+    [Header("Ink Details")]
+    public int inkLevel;
+    public bool inkCheck;
+    public Canvas inkCanvas;
+    public Canvas inkCanvas1;
+    public Canvas inkCanvas2;
+    Canvas ink;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +86,12 @@ public class PlayerController : MonoBehaviour
             BatAway();
         }
 
+        if(inkCheck)
+        {
+            inkCheck = false;
+            InkEffect();
+        }
+
         
         
     }
@@ -101,6 +115,34 @@ public class PlayerController : MonoBehaviour
         currentSpeed = Vector3.Magnitude(rb.velocity);
         
         
+    }
+
+    void InkEffect() //layers semi-transparent canvases to progressively add inkiness
+    {
+        if(inkLevel == 1)
+        {
+           ink = Instantiate(inkCanvas, this.transform.position, Quaternion.identity); //spawn spot doesnt matter since its ui
+        }
+        if(inkLevel == 2)
+        {
+            ink = Instantiate(inkCanvas, this.transform.position, Quaternion.identity); //spawn spot doesnt matter since its ui
+        }
+        if(inkLevel == 3)
+        {
+            ink = Instantiate(inkCanvas1, this.transform.position, Quaternion.identity); //spawn spot doesnt matter since its ui
+        }
+        if(inkLevel == 4)
+        {
+            ink = Instantiate(inkCanvas1, this.transform.position, Quaternion.identity); //spawn spot doesnt matter since its ui
+        }
+        if(inkLevel == 5)
+        {
+            ink = Instantiate(inkCanvas2, this.transform.position, Quaternion.identity); //spawn spot doesnt matter since its ui
+        }
+        if(inkLevel == 6)
+        {
+            ink = Instantiate(inkCanvas2, this.transform.position, Quaternion.identity); //spawn spot doesnt matter since its ui
+        }
     }
 
     void Fly()

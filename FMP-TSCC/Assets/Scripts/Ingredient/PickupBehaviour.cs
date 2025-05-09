@@ -11,6 +11,7 @@ public class PickupBehaviour : MonoBehaviour
     public GameObject[] visualPrefab;
     public bool destroyOnCollect;
     bool isRunning;
+    public GameObject spawnedVisual;
     GameObject pl;
 
     [Header("Pickup Effects")]
@@ -22,6 +23,9 @@ public class PickupBehaviour : MonoBehaviour
     void Start()
     {
         GameObject visual = Instantiate(visualPrefab[visualID], this.transform.position, this.transform.rotation);
+
+        spawnedVisual = visual;
+        
         visual.transform.parent = this.transform;
         pl = GameObject.FindWithTag("Player");
     }
@@ -88,7 +92,8 @@ public class PickupBehaviour : MonoBehaviour
         }
         else if(pickupBehaviourID == 2)
         {
-            
+            pl.GetComponent<PlayerController>().inkLevel += 1;
+            pl.GetComponent<PlayerController>().inkCheck = true;
         }
     }
 

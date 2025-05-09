@@ -5,8 +5,8 @@ using UnityEngine;
 public class IngredientMove : MonoBehaviour
 {
     public float speed, homeSpeed;
-    public bool isStop, isDown, isForward, isDecay, isHome;
-    public GameObject shadowPrefab;
+    public bool isStop, isDown, isForward, isDecay, isHome, isExplodeOnStop;
+    public GameObject shadowPrefab, explodePrefab;
     GameObject shadow, pl;
     public Transform castPos;
     RaycastHit hit;
@@ -49,7 +49,7 @@ public class IngredientMove : MonoBehaviour
 
     public void OnTriggerEnter(Collider coll)
     {
-        if(isStop && (coll.tag == "Environment"))
+        if(isStop && (coll.tag == "Environment") && !isExplodeOnStop)
         {
             speed = 0f;
 
@@ -59,6 +59,12 @@ public class IngredientMove : MonoBehaviour
 
             Destroy(shadow);
             Destroy(this);
+        }
+        else if(isStop && (coll.tag == "Environment") && isExplodeOnStop)
+        {
+            GameObject explosion = Instantiate(explodePrefab, this.transform.position, Quaternion.identity);
+            Destroy(shadow);
+            Destroy(this.gameObject);
         }
     }
 

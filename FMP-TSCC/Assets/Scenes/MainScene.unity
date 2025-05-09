@@ -2297,7 +2297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.43935147, y: 0, z: 0, w: 0.89831525}
+  m_LocalRotation: {x: 0.4393511, y: 0, z: 0, w: 0.8983154}
   m_LocalPosition: {x: -6.253, y: 4.339, z: 15.371681}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4384,7 +4384,7 @@ MonoBehaviour:
   - {fileID: 7128750398601454612, guid: 20c60f456b733a44e86192a4c3fca152, type: 3}
   - {fileID: 8056140265098942429, guid: 4659cc3c2db5a2b4599779209aa7dae8, type: 3}
   - {fileID: 3740813234212062947, guid: 74cb9156b3bd6704fb8dded62f4d34ce, type: 3}
-  - {fileID: 7128750398601454612, guid: 20c60f456b733a44e86192a4c3fca152, type: 3}
+  - {fileID: 720954981253844893, guid: 54d9be6d30fbbe4438bc709d91bf70f1, type: 3}
   - {fileID: 4242721441089836349, guid: bfb68b5e95adb484bb9105091e959bb7, type: 3}
   - {fileID: 7128750398601454612, guid: 20c60f456b733a44e86192a4c3fca152, type: 3}
   - {fileID: 4261056280180421091, guid: 83d6ca63f353dd24f8ff99a701f05121, type: 3}
@@ -5543,6 +5543,14 @@ MonoBehaviour:
     type: 3}
   projAlignEmpty: {fileID: 15767072}
   currentSpeed: 0
+  inkLevel: 0
+  inkCheck: 0
+  inkCanvas: {fileID: 5551478293094655934, guid: 1ed9cc95ff59fdb47a3cd3913ffea92d,
+    type: 3}
+  inkCanvas1: {fileID: 6237439475009909595, guid: b17d4d0104ee9864ea8840d607493e30,
+    type: 3}
+  inkCanvas2: {fileID: 121740187739262963, guid: 91f78bd4c6dc49a48ad3fa64423450e2,
+    type: 3}
 --- !u!54 &755366449
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12497,13 +12505,19 @@ MonoBehaviour:
   - {fileID: 7011523607579006411, guid: fe0200af8f28c3d48927ec0dc1ecc918, type: 3}
   - {fileID: 5627986686750378869, guid: 17cc17fcffcebf2469873befce3f6ca5, type: 3}
   - {fileID: 472667756913178427, guid: a3a4276943bdad24da41f03eaa1b3c7e, type: 3}
-  squidTutorials: []
+  squidTutorials:
+  - {fileID: 3456055987065668176, guid: 7aefb5ca96ffb05439dd8a3f802821e8, type: 3}
+  - {fileID: 2552797277805574956, guid: e93e95e57ec4ccc409b7746751e90e08, type: 3}
   fruitTutorials:
   - {fileID: 7900606003685595523, guid: 836a5a89a18c21a4b98451cac2ab30b3, type: 3}
   - {fileID: 8233155048238271406, guid: f82e2fc8727079b4e86a0f648b5cbe61, type: 3}
   - {fileID: 3847173036478783121, guid: 446401eb869399b408f10caa1a2e5509, type: 3}
   chickenTutorials: []
-  sugarTutorials: []
+  sugarTutorials:
+  - {fileID: 1764368498898044699, guid: 3a09358f1e49ed24ca1b3e01622edf04, type: 3}
+  - {fileID: 5504235594232456574, guid: eab682ae005042045a9ac99d11d2d9c4, type: 3}
+  - {fileID: 1635316249875618689, guid: 0776d0ac5d7d1af4e93f958bb493b614, type: 3}
+  - {fileID: 2675519638819294292, guid: 3674bb6ca6b92144aab7c38fe2f163dc, type: 3}
 --- !u!4 &2113453171
 Transform:
   m_ObjectHideFlags: 0
