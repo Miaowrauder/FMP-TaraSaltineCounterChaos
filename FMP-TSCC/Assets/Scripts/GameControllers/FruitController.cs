@@ -17,6 +17,7 @@ public class FruitController : MonoBehaviour
         
         pl.GetComponent<IngredientHolder>().maxIngredients = 80f;
         pl.GetComponent<DodgeController>().isActive = true;
+        pl.GetComponent<DodgeController>().sliderSet = true;
 
         ingSpawner.GetComponent<IngredientSpawning>().spawnType = 2; //select spawning type
         ingSpawner.GetComponent<IngredientSpawning>().spawnDelay = 0.5f; //set spawning delay
@@ -48,6 +49,7 @@ public class FruitController : MonoBehaviour
         ingSpawner.GetComponent<IngredientSpawning>().spawnsToTriggerBonus = 9999;    
         ingSpawner.GetComponent<IngredientSpawning>().dualSpawning = false;
         pl.GetComponent<DodgeController>().isActive = false;
+        
 
         
     }

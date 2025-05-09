@@ -27,6 +27,8 @@ public class IngredientSpawning : MonoBehaviour
     public GameObject bonusSpawnedPrefab;
     public int spawnsToTriggerBonus;
     int bonusCount;
+    GameObject[] ingSpot;
+    
 
     
     // Start is called before the first frame update
@@ -68,7 +70,11 @@ public class IngredientSpawning : MonoBehaviour
             else if(spawnType == 2)
             {
                 Spawn2();
-            }          
+            }
+            else if(spawnType == 3)
+            {
+                Spawn3();
+            }              
         }
         
 
@@ -188,6 +194,40 @@ public class IngredientSpawning : MonoBehaviour
 
         bonusCount++;
 
+    }
+
+    void Spawn3()
+    {
+        if(ingSpot != null)
+        {
+            for(int a = 0; a < ingSpot.Length; a++) //clears array
+            {
+                ingSpot[a] = null;
+            }
+        }
+        
+
+        ingSpot = GameObject.FindGameObjectsWithTag("IngSpot");
+
+        int r = Random.Range(0, ingSpot.Length);
+
+        if(dualSpawning)
+        {
+            int spawn2 = Random.Range(0, 11);
+
+            if(spawn2 > dualSpawnWeightOutOfTen)
+            {
+                GameObject item = Instantiate(spawnedPrefab, ingSpot[r].transform.position, Quaternion.identity);
+            }
+            else
+            {
+                GameObject item = Instantiate(dualSpawnedPrefab, ingSpot[r].transform.position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            GameObject item = Instantiate(spawnedPrefab, ingSpot[r].transform.position, Quaternion.identity);
+        }
     }
 
     void BonusSpawn()

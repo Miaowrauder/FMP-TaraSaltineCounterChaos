@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4261056280180421091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7161297656498878316}
+  - component: {fileID: 7780247144639602683}
+  m_Layer: 0
+  m_Name: Sugar Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7161297656498878316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4261056280180421091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.286907, y: 9.525054, z: 19.612568}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7780247144639602683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4261056280180421091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510796de6ca1fc64482d8a219049287a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredientPrefab: {fileID: 7133547830387196888, guid: 5b13d9f22ecd33847914f362eb0c7e11,
+    type: 3}
+  mapPrefab: {fileID: 2982725422635615622, guid: c23153878c336b5438c29099c826100a,
+    type: 3}
+  smallerPrefabs:
+  - {fileID: 5713688012707024916, guid: 6827360d1fb5cdb419f9caf1c961982f, type: 3}
+  - {fileID: 4090522130431185051, guid: 300947255c4a5e04ebdcfb489ff274f6, type: 3}
+  - {fileID: 7726723304554771496, guid: b05e819f1b4101443b9cf74810a1df03, type: 3}

@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public bool canMove, isGrounded, canGravity, canJump, canFly, canBat;
     public float moveSpeed, jumpHeight, groundDistance, gravity;
-    float calcGravity;
+    public float calcGravity;
     public Transform camTransform, groundCheckTransform;
     public GameObject plHead, cam;
     Rigidbody rb;
@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public float hitRadius;
     public GameObject batVisual;
     public GameObject projAlignEmpty;
+    [Header("Speed Measurement")]
+    public float currentSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +97,8 @@ public class PlayerController : MonoBehaviour
         {
             Gravity();
         }
+
+        currentSpeed = Vector3.Magnitude(rb.velocity);
         
         
     }
@@ -155,7 +159,7 @@ public class PlayerController : MonoBehaviour
 
         if(Physics.Raycast(groundCheckTransform.position, Vector3.down, out hit, groundDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
-            if((hit.collider.tag == ("Environment")))
+            if((hit.collider.tag == ("Environment")) || (hit.collider.tag == ("Game Piece")))
                 {
                     isGrounded = true;
                     calcGravity = gravity;

@@ -19,6 +19,7 @@ TagManager:
   - WindCollider
   - UfoBeam
   - Clump
+  - PrefabSpot
   layers:
   - Default
   - TransparentFX

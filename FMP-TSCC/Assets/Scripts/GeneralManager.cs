@@ -63,9 +63,9 @@ public class GeneralManager : MonoBehaviour
             minigameID = new int[3];
             gameScore = new float[3];
 
-            minigameID[0] = 6; // should be 0, 1, 2 - changed for testing
-            minigameID[1] = 6; 
-            minigameID[2] = 6; //ouzo halloumi, chs,oil,jui
+            minigameID[0] = 8; // should be 0, 1, 2 - changed for testing
+            minigameID[1] = 8; 
+            minigameID[2] = 8; //ouzo halloumi, chs,oil,jui
 
             prepIngredientID = new int[3];
 
@@ -236,8 +236,9 @@ public class GeneralManager : MonoBehaviour
 
         GameObject ingSpawner = GameObject.Find("Ingredient Spawning");
         ingSpawner.GetComponent<IngredientSpawning>().isActive = false;
+        
 
-        GameObject[] ingSpots = GameObject.FindGameObjectsWithTag("Game Piece");
+        GameObject[] ingSpots = GameObject.FindGameObjectsWithTag("IngSpot");
 
         for(int a = 0; a < ingSpots.Length; a++) //destroy all game pieces in arena
         {
@@ -251,12 +252,21 @@ public class GeneralManager : MonoBehaviour
             Destroy(windColls[a]);
         } 
 
-        GameObject[] gamePieces = GameObject.FindGameObjectsWithTag("IngSpot");
+        GameObject[] gamePieces = GameObject.FindGameObjectsWithTag("Game Piece");
 
         for(int a = 0; a < gamePieces.Length; a++) //destroy all ing spots
         {
             Destroy(gamePieces[a]);
         }
+
+        GameObject[] prefabSpots = GameObject.FindGameObjectsWithTag("PrefabSpot");
+
+        for(int a = 0; a < prefabSpots.Length; a++) //destroy all ing spots
+        {
+            Destroy(prefabSpots[a]);
+        }
+
+        
 
         tc.GetComponent<TimerController>().inBreakState = true;
         tc.GetComponent<TimerController>().inGameState = false; 

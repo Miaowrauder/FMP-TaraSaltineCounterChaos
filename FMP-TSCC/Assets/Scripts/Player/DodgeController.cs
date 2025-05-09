@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DodgeController : MonoBehaviour
 {
-    public bool isActive;
+    public bool isActive, sliderSet;
     bool canCountdown;
     public float dodgeCooldown, speedMult;
     float currentDodgeCooldown;
@@ -16,7 +16,6 @@ public class DodgeController : MonoBehaviour
     {
         GameObject temp = GameObject.Find("Minigame Slider");
         mgSlider = temp.GetComponent<Slider>();
-        mgSlider.maxValue = dodgeCooldown;
 
         canCountdown = true;
     }
@@ -24,9 +23,14 @@ public class DodgeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isActive && (currentDodgeCooldown <= 0f) && Input.GetKeyDown(KeyCode.LeftShift))
+        if(isActive) 
         {
-            Dodge();
+            mgSlider.value = (dodgeCooldown - currentDodgeCooldown);
+
+            if((currentDodgeCooldown <= 0f) && Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Dodge();
+            }
         }
 
         if(canCountdown && (dodgeCooldown > 0))
@@ -34,7 +38,12 @@ public class DodgeController : MonoBehaviour
             StartCoroutine(CountDown());
         }
 
-        mgSlider.value = (dodgeCooldown - currentDodgeCooldown);
+        if(sliderSet)
+        {
+            sliderSet = false;
+            mgSlider.maxValue = dodgeCooldown;
+        }
+
     }
 
     void Dodge()
