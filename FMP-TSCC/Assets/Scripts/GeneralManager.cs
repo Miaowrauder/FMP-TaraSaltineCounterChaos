@@ -64,7 +64,7 @@ public class GeneralManager : MonoBehaviour
             gameScore = new float[3];
 
             minigameID[0] = 5; // should be 0, 1, 2 - changed for testing
-            minigameID[1] = 5; 
+            minigameID[1] = 8; 
             minigameID[2] = 5; //ouzo halloumi, chs,oil,jui
 
             prepIngredientID = new int[3];
