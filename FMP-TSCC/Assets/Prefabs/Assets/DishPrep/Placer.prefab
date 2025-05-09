@@ -118,8 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54befe241cd464f49a645622ac7e1c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  directionSwapDelay: 5
+  speed: 5
+  directionSwapDelay: 4
   canSwap: 0
   movementTicks: 0
   firstTick: 1

@@ -20,7 +20,7 @@ public class FruitController : MonoBehaviour
         pl.GetComponent<DodgeController>().sliderSet = true;
 
         ingSpawner.GetComponent<IngredientSpawning>().spawnType = 2; //select spawning type
-        ingSpawner.GetComponent<IngredientSpawning>().spawnDelay = 0.5f; //set spawning delay
+        ingSpawner.GetComponent<IngredientSpawning>().spawnDelay = 0.6f; //set spawning delay
         ingSpawner.GetComponent<IngredientSpawning>().spawnedPrefab = ingredientPrefab; 
         ingSpawner.GetComponent<IngredientSpawning>().dualSpawnedPrefab = ingredientPrefab2;
         ingSpawner.GetComponent<IngredientSpawning>().bonusSpawnedPrefab = clumpPrefab;

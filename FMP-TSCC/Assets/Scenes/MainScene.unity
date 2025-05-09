@@ -4391,7 +4391,7 @@ MonoBehaviour:
   pl: {fileID: 0}
   gameScore: []
   gameDuration: 60
-  breakDuration: 4
+  breakDuration: 3
   gameTrigger: 0
   breakTrigger: 0
   endTrigger: 0
