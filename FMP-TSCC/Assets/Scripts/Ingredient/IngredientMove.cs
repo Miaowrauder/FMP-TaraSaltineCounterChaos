@@ -21,16 +21,15 @@ public class IngredientMove : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate() 
     {
-        if(isForward)
+       if(isForward)
         {
             transform.Translate(Vector3.forward * (Time.deltaTime * speed));
 
             if(isDecay && (speed > 0f))
             {
-                speed -= 0.001f;
+                speed -= 0.01f;
             }
         }
         else if(isDown)
@@ -43,8 +42,7 @@ public class IngredientMove : MonoBehaviour
             Vector3 relativePos = pl.transform.position - this.transform.position;
             Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
             this.transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * homeSpeed);
-        }
-        
+        } 
     }
 
     public void OnTriggerEnter(Collider coll)

@@ -65,8 +65,10 @@ MonoBehaviour:
   - {fileID: 6727700042984961697, guid: a49c33660c9b67d4f9bc1f1dcd9c119a, type: 3}
   - {fileID: 212346539014707482, guid: acd3e84cd21833c42acfc22ebdf3daf6, type: 3}
   destroyOnCollect: 1
+  spawnedVisual: {fileID: 0}
   pickupBehaviourID: 0
   knockupStrength: 0
+  beenDeflected: 0
 --- !u!114 &5233745179696130208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,12 +82,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  homeSpeed: 0
   isStop: 0
   isDown: 0
   isForward: 1
   isDecay: 1
+  isHome: 0
+  isExplodeOnStop: 0
   shadowPrefab: {fileID: 7563828887424938245, guid: 52edf0f890562684aa61b3686cab3b1c,
     type: 3}
+  explodePrefab: {fileID: 0}
   castPos: {fileID: 0}
   layerMask:
     serializedVersion: 2

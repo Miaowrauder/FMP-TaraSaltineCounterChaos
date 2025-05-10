@@ -15,8 +15,7 @@ public class IngredientChase : MonoBehaviour
         pl = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         DistanceCheck();
     }

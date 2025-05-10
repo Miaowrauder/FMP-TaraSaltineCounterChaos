@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Chicken IMG
+  m_text: 'Chicken IMG  [Skipped]
 
 '
   m_isRightToLeft: 0

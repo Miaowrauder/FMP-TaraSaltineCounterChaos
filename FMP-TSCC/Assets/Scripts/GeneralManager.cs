@@ -56,16 +56,16 @@ public class GeneralManager : MonoBehaviour
         }
     }
 
-    void DecodeID()
+    void DecodeID() //greyed out elements are unimplemented games, I would rather have shorter dishes than test controller phases
     {
         if(dishID == 0)
         {
-            minigameID = new int[3];
-            gameScore = new float[3];
+            minigameID = new int[1];
+            gameScore = new float[1];
 
-            minigameID[0] = 5; // should be 0, 1, 2 - changed for testing
-            minigameID[1] = 8; 
-            minigameID[2] = 5; //ouzo halloumi, chs,oil,jui
+            minigameID[0] = 0;
+            //minigameID[1] = 1; 
+            //minigameID[2] = 2; //ouzo halloumi, chs,oil,jui
 
             prepIngredientID = new int[3];
 
@@ -91,12 +91,14 @@ public class GeneralManager : MonoBehaviour
         }
         else if(dishID == 2)
         {
-            minigameID = new int[3];
-            gameScore = new float[3];
+            minigameID = new int[2];
+            gameScore = new float[2];
             
-            minigameID[0] = 1; 
-            minigameID[1] = 5; 
-            minigameID[2] = 4; //calamari, oil,squ,whe
+            //minigameID[0] = 1; 
+            //minigameID[1] = 5; 
+            //minigameID[2] = 4; //calamari, oil,squ,whe
+            minigameID[0] = 5; 
+            minigameID[1] = 4;
 
             prepIngredientID = new int[3];
 
@@ -136,12 +138,13 @@ public class GeneralManager : MonoBehaviour
         }
         else if(dishID == 5)
         {
-            minigameID = new int[3];
-            gameScore = new float[3];
+            minigameID = new int[1];
+            gameScore = new float[1];
 
-            minigameID[0] = 7; 
-            minigameID[1] = 2; 
-            minigameID[2] = 3; //coq au vin, chi, jui, veg
+            //minigameID[0] = 7; 
+            //minigameID[1] = 2; 
+            //minigameID[2] = 3; //coq au vin, chi, jui, veg
+            minigameID[0] = 3; 
 
             prepIngredientID = new int[3];
 
@@ -152,12 +155,14 @@ public class GeneralManager : MonoBehaviour
         }
         else if(dishID == 6)
         {
-            minigameID = new int[3];
-            gameScore = new float[3];
+            minigameID = new int[2];
+            gameScore = new float[2];
 
-            minigameID[0] = 7; 
-            minigameID[1] = 8; 
-            minigameID[2] = 4; //chicken laska, chi,sug,whe
+            //minigameID[0] = 7; 
+            //minigameID[1] = 8; 
+            //minigameID[2] = 4; //chicken laska, chi,sug,whe
+            minigameID[0] = 8; 
+            minigameID[1] = 4;
 
             prepIngredientID = new int[3];
 
@@ -167,12 +172,14 @@ public class GeneralManager : MonoBehaviour
         }
         else if(dishID == 7)
         {
-            minigameID = new int[3];
-            gameScore = new float[3];
+            minigameID = new int[2];
+            gameScore = new float[2];
 
-            minigameID[0] = 7; 
-            minigameID[1] = 5; 
-            minigameID[2] = 3; //paella, chi,squ,veg
+            //minigameID[0] = 7; 
+            //minigameID[1] = 5; 
+            //minigameID[2] = 3; //paella, chi,squ,veg
+            minigameID[0] = 5; 
+            minigameID[1] = 3;
 
             prepIngredientID = new int[3];
 
@@ -182,12 +189,14 @@ public class GeneralManager : MonoBehaviour
         }
         else if(dishID == 8)
         {
-            minigameID = new int[3];
-            gameScore = new float[3];
+            minigameID = new int[2];
+            gameScore = new float[2];
 
-            minigameID[0] = 1; 
-            minigameID[1] = 8; 
-            minigameID[2] = 6; //pineapple steak, oil,sug,fru
+            //minigameID[0] = 1; 
+            //minigameID[1] = 8; 
+            //minigameID[2] = 6; //pineapple steak, oil,sug,fru
+            minigameID[0] = 8; 
+            minigameID[1] = 6;
 
             prepIngredientID = new int[3];
 
@@ -198,12 +207,14 @@ public class GeneralManager : MonoBehaviour
 
         else if(dishID == 9)
         {
-            minigameID = new int[3];
-            gameScore = new float[3];
+            minigameID = new int[2];
+            gameScore = new float[2];
 
-            minigameID[0] = 2; 
-            minigameID[1] = 8; 
-            minigameID[2] = 3; //bloody mary soup, jui, sug, veg
+            //minigameID[0] = 2; 
+            //minigameID[1] = 8; 
+            //minigameID[2] = 3;
+            minigameID[0] = 8; 
+            minigameID[1] = 3; //bloody mary soup, jui, sug, veg
 
             prepIngredientID = new int[3];
 

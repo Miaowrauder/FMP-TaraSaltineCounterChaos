@@ -14,8 +14,7 @@ public class IngredientHover : MonoBehaviour
         canSwap = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate() 
     {
         this.gameObject.transform.Translate(Vector3.up * (Time.deltaTime * speed));
 

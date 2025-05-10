@@ -155,6 +155,7 @@ public class PauseAndSettings : MonoBehaviour
     {
         GameObject dh = GameObject.Find("Data Holder");
         Destroy(dh);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("PreGameScene");
     }
 }

@@ -15,7 +15,7 @@ public class PlacerMover : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(Vector3.forward * (Time.deltaTime * speed));
 

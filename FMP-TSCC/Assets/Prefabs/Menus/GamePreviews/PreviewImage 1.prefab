@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Oil IMG
+  m_text: 'Oil IMG  [Skipped]
 
 '
   m_isRightToLeft: 0
