@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject mountPos;
     [Header("Flight Details")]
     public float flightSpeed;
-    float activeFlightSpeed;
+    public float activeFlightSpeed;
 
     [Header("Batting Details")]
     public LayerMask batMask;

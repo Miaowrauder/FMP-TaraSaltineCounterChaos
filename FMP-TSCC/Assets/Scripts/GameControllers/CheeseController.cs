@@ -6,7 +6,7 @@ using Cinemachine;
 public class CheeseController : MonoBehaviour
 {
     GameObject ingSpawner, pl, tc, pc;
-    public GameObject ingredientPrefab, dualIngredientPrefab, mapPrefab;
+    public GameObject ingredientPrefab, dualIngredientPrefab, mapPrefab, jetVisual;
     public GameObject[] moonPrefabs;
     bool endTrigger;
     // Start is called before the first frame update
@@ -20,6 +20,9 @@ public class CheeseController : MonoBehaviour
         pl.GetComponent<PlayerController>().canGravity = false;
         pl.GetComponent<PlayerController>().canFly = true;
         pl.GetComponent<Rigidbody>().useGravity = false;
+        pl.GetComponent<PlayerController>().flightSpeed = 1f;
+        
+        
     
         pl.GetComponent<IngredientHolder>().maxIngredients = 85f;
 
@@ -48,6 +51,9 @@ public class CheeseController : MonoBehaviour
         ingSpawner.GetComponent<IngredientSpawning>().dualSpawnWeightOutOfTen = 2;
         ingSpawner.GetComponent<IngredientSpawning>().dualSpawning = true;
         ingSpawner.GetComponent<IngredientSpawning>().isActive = true;
+
+        GameObject jp = Instantiate(jetVisual, pl.GetComponent<PlayerController>().holdSpot.position, Quaternion.identity);
+        jp.transform.parent = pl.GetComponent<PlayerController>().holdSpot;
    
     }
 
@@ -77,6 +83,9 @@ public class CheeseController : MonoBehaviour
         pl.GetComponent<PlayerController>().canGravity = true;
         pl.GetComponent<PlayerController>().canFly = false;
         pl.GetComponent<Rigidbody>().useGravity = true;
+
+        pl.GetComponent<PlayerController>().activeFlightSpeed = 0;
+        pl.GetComponent<PlayerController>().flightSpeed = 0;
         
     }
 }

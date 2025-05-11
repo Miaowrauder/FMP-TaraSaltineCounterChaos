@@ -66,8 +66,12 @@ public class PickupBehaviour : MonoBehaviour
         }
         else if((coll.tag == "Clump") && (appliedValue < 0) && beenDeflected)
         {
-            coll.GetComponent<IngredientClump>().health += appliedValue;
-            Destroy(this.gameObject);
+            if(coll.GetComponent<IngredientClump>())
+            {
+                coll.GetComponent<IngredientClump>().health += appliedValue;
+                Destroy(this.gameObject);
+            }
+
         }
         
     }

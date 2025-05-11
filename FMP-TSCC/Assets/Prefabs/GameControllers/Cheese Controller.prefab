@@ -50,6 +50,8 @@ MonoBehaviour:
     type: 3}
   mapPrefab: {fileID: 2372472986148560403, guid: b587511e66aad8f40b08ca2f55a1f195,
     type: 3}
+  jetVisual: {fileID: 766371246246227222, guid: a2ea4ce8cb2cfec428a25d321bb0b9a9,
+    type: 3}
   moonPrefabs:
   - {fileID: 4536003163452251437, guid: fab3f3311be39f9438331e4ed0a816ba, type: 3}
   - {fileID: 3827466158803177965, guid: 92488b87e2f74174896fa75cf3f1dd0e, type: 3}

@@ -298,6 +298,7 @@ public class GeneralManager : MonoBehaviour
         pl.GetComponent<DodgeController>().isActive = false;
         pl.GetComponent<PoundController>().isActive = false;
         pl.GetComponent<PlayerController>().inRush = false;
+        pl.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         
         if(game >= minigameID.Length)
         {
