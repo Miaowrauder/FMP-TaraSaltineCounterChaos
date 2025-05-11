@@ -34,7 +34,7 @@ public class PauseAndSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
+        if(Input.GetKey(KeyCode.Tab))
         {
             if(!isPaused && canPause)
             {

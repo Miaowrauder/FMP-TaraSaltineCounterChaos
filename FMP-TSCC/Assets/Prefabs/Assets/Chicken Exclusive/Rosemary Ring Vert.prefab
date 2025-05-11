@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4656351849299847513}
   m_Layer: 0
   m_Name: Rosemary Ring Vert
-  m_TagString: Untagged
+  m_TagString: Game Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,5 @@ MonoBehaviour:
   canUse: 1
   launchHeight: 50
   reactivateDelay: 20
-  rushDuration: 5
   activeMat: {fileID: 2100000, guid: 1b284ee4fdf3a634ea603bbd8a350772, type: 2}
   inactiveMat: {fileID: 2100000, guid: 1fdb29671b62b8041beca49d47dfb341, type: 2}
