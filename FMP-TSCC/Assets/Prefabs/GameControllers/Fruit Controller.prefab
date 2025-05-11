@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 730024770952238061}
   m_Layer: 0
   m_Name: Fruit Controller
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,4 +49,6 @@ MonoBehaviour:
   ingredientPrefab2: {fileID: 2884078033904787749, guid: 0595e1bfa10752b42b57a860ffdde7ce,
     type: 3}
   clumpPrefab: {fileID: 4558684879786983946, guid: 9d426128775342b44abcb37a6e9378cb,
+    type: 3}
+  batVisual: {fileID: 4180840313341925752, guid: f7bc571f091347749a18155a2516037c,
     type: 3}

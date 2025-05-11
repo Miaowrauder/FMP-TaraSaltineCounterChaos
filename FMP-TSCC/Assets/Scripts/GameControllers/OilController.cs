@@ -5,7 +5,7 @@ using UnityEngine;
 public class OilController : MonoBehaviour
 {
     GameObject ingSpawner, pl, tc;
-    public GameObject ingredientPrefab, mapPrefab, evilPrefab;
+    public GameObject ingredientPrefab, mapPrefab, evilPrefab, whiskVisual;
     bool canLoop;
     public int minHeatLength, maxHeatLength, minBreakLength, maxBreakLength;
     GameObject[] slimes, ings, cms;
@@ -16,7 +16,7 @@ public class OilController : MonoBehaviour
         pl = GameObject.FindWithTag("Player");
         tc = GameObject.FindWithTag("Timer");
         
-        pl.GetComponent<IngredientHolder>().maxIngredients = 175f;
+        pl.GetComponent<IngredientHolder>().maxIngredients = 125f;
 
         ingSpawner.GetComponent<IngredientSpawning>().spawnType = 3; //select spawning type
         ingSpawner.GetComponent<IngredientSpawning>().spawnDelay = 1f; //set spawning delay
@@ -31,6 +31,9 @@ public class OilController : MonoBehaviour
         pl.GetComponent<DodgeController>().isActive = true;
         pl.GetComponent<DodgeController>().sliderSet = true;
         pl.GetComponent<PlayerController>().canWhisk = true;
+
+        GameObject whisk = Instantiate(whiskVisual, pl.GetComponent<PlayerController>().holdSpot.position, Quaternion.identity);
+        whisk.transform.parent = pl.GetComponent<PlayerController>().holdSpot;
     }
 
     // Update is called once per frame

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FruitController : MonoBehaviour
 {
     GameObject ingSpawner, pl, tc;
-    public GameObject ingredientPrefab, ingredientPrefab2, clumpPrefab;
+    public GameObject ingredientPrefab, ingredientPrefab2, clumpPrefab, batVisual;
     bool endTrigger;
     // Start is called before the first frame update
     void Start() //choosing NOT to house all the behaviours in one central controller script - keeps things clean and prevents the instantiated controller causing lag becauses its holding 10 times as much as it needs, this is to illustrate base functions that will be put in all the separate game controllers
@@ -29,6 +29,9 @@ public class FruitController : MonoBehaviour
         ingSpawner.GetComponent<IngredientSpawning>().dualSpawnWeightOutOfTen = 2;
         ingSpawner.GetComponent<IngredientSpawning>().setY = -1f;
         ingSpawner.GetComponent<IngredientSpawning>().isActive = true;
+
+        GameObject bat = Instantiate(batVisual, pl.GetComponent<PlayerController>().holdSpot.position, Quaternion.identity);
+        bat.transform.parent = pl.GetComponent<PlayerController>().holdSpot;
 
     }
 

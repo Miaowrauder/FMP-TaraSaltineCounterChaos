@@ -27,8 +27,13 @@ public class PlayerController : MonoBehaviour
     public float hitRadius;
     public GameObject batVisual;
     public GameObject projAlignEmpty;
-    [Header("Speed Measurement")]
+    [Header("Speed Measurement / Chicken")]
     public float currentSpeed;
+    public float lastSpeed;
+    public float speedDifference;
+    int speedTick;
+    public bool inRush;
+    public int crashDetected;
     [Header("Ink Details")]
     public int inkLevel;
     public bool inkCheck;
@@ -46,6 +51,11 @@ public class PlayerController : MonoBehaviour
     public GameObject whiskVisual;
     public float ingsGained;
     public bool canWhisk;
+    [Header("Held Objects")]
+    public Transform eggSpot;
+    public Transform eggSpotHeld;
+    public Transform eggSpotBelow;
+    public Transform holdSpot;
 
     GameObject pm;
     // Start is called before the first frame update
@@ -61,6 +71,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         canCast = true;
         isGrounded = true;
+        speedTick = 6;
     }
 
     // Update is called once per frame
@@ -140,9 +151,30 @@ public class PlayerController : MonoBehaviour
         }
 
         currentSpeed = Vector3.Magnitude(rb.velocity);
-        
+
+        speedTick--;
+
+        if(speedTick == 0)
+        {
+            SpeedDelay();
+        }
+
+        speedDifference = lastSpeed - currentSpeed;
+
+        if((speedDifference > 10f) && isGrounded)
+        {
+            crashDetected++;
+            inRush = false;
+        }
         
     }
+
+    void SpeedDelay()
+    {
+        lastSpeed = currentSpeed;
+        speedTick = 6;
+    }
+
     void Whisk()
     {
         Collider[] hitSlimes = Physics.OverlapSphere(this.transform.position, whiskRadius);
@@ -248,6 +280,13 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(moveDir * (moveSpeed/2), ForceMode.Impulse);
         }
+
+        if(inRush) //only forward momentum
+        {
+            moveDir = new Vector3(0, 0, 1);
+            moveDir = Quaternion.AngleAxis(camTransform.rotation.eulerAngles.y, Vector3.up) * moveDir;
+            rb.AddForce(moveDir * (moveSpeed*1.5f), ForceMode.Impulse);
+        }
         
     }
 
@@ -259,6 +298,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(moveDir * (jumpHeight*0.4f), ForceMode.Impulse);
             StartCoroutine(JumpDelay());
             isGrounded = false;
+            eggSpot.position = eggSpotBelow.position;
             
         }     
     }
@@ -271,6 +311,7 @@ public class PlayerController : MonoBehaviour
             if((hit.collider.tag == ("Environment")) || (hit.collider.tag == ("Game Piece")))
                 {
                     isGrounded = true;
+                    eggSpot.position = eggSpotHeld.position;
                     calcGravity = gravity;
                 }  
         }

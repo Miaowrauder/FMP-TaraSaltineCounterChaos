@@ -49,7 +49,7 @@ public class IngredientMove : MonoBehaviour
 
     public void OnTriggerEnter(Collider coll)
     {
-        if(isStop && (coll.tag == "Environment") && !isExplodeOnStop)
+        if(isStop && ((coll.tag == "Environment") || (coll.tag == "Game Piece")) && !isExplodeOnStop)
         {
             speed = 0f;
 
@@ -60,7 +60,7 @@ public class IngredientMove : MonoBehaviour
             Destroy(shadow);
             Destroy(this);
         }
-        else if(isStop && (coll.tag == "Environment") && isExplodeOnStop)
+        else if(isStop && ((coll.tag == "Environment") || (coll.tag == "Game Piece")) && isExplodeOnStop)
         {
             GameObject explosion = Instantiate(explodePrefab, this.transform.position, Quaternion.identity);
             Destroy(shadow);

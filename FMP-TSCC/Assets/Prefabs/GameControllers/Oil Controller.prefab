@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7191765731413690784}
   m_Layer: 0
   m_Name: Oil Controller
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,8 @@ MonoBehaviour:
   mapPrefab: {fileID: 3409566458581492143, guid: 74c459bb27a7c49438da55f71d31b2e4,
     type: 3}
   evilPrefab: {fileID: 212346539014707482, guid: acd3e84cd21833c42acfc22ebdf3daf6,
+    type: 3}
+  whiskVisual: {fileID: 4180840313341925752, guid: 6453fe901eacb794d94fd960d9247c49,
     type: 3}
   minHeatLength: 5
   maxHeatLength: 10

@@ -63,9 +63,9 @@ public class GeneralManager : MonoBehaviour
             minigameID = new int[3];
             gameScore = new float[3];
 
-            minigameID[0] = 1; // should be 0, 1, 2 - changed for testing
-            minigameID[1] = 8; 
-            minigameID[2] = 5; //ouzo halloumi, chs,oil,jui
+            minigameID[0] = 0;
+            minigameID[1] = 1; 
+            minigameID[2] = 2; //ouzo halloumi, chs,oil,jui
 
             prepIngredientID = new int[3];
 
@@ -239,6 +239,9 @@ public class GeneralManager : MonoBehaviour
 
         GameObject ingSpawner = GameObject.Find("Ingredient Spawning");
         ingSpawner.GetComponent<IngredientSpawning>().isActive = false;
+
+        GameObject gc = GameObject.FindWithTag("GameController");
+        Destroy(gc);
         
 
         GameObject[] ingSpots = GameObject.FindGameObjectsWithTag("IngSpot");
@@ -269,6 +272,13 @@ public class GeneralManager : MonoBehaviour
             Destroy(prefabSpots[a]);
         }
 
+         GameObject[] slimes = GameObject.FindGameObjectsWithTag("Slime");
+
+        for(int a = 0; a < slimes.Length; a++) //destroy all ing spots
+        {
+            Destroy(slimes[a]);
+        }
+
         
 
         tc.GetComponent<TimerController>().inBreakState = true;
@@ -286,6 +296,7 @@ public class GeneralManager : MonoBehaviour
         pl.GetComponent<PlayerController>().canWhisk = false;
         pl.GetComponent<DodgeController>().isActive = false;
         pl.GetComponent<PoundController>().isActive = false;
+        pl.GetComponent<PlayerController>().inRush = false;
         
         if(game >= minigameID.Length)
         {
