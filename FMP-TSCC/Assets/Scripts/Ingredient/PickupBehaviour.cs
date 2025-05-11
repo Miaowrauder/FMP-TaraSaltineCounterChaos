@@ -19,6 +19,7 @@ public class PickupBehaviour : MonoBehaviour
     public float knockupStrength;
     [Header("Miscellaneous")]
     public bool beenDeflected;
+    public bool isHallucination;
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +96,16 @@ public class PickupBehaviour : MonoBehaviour
             pl.GetComponent<PlayerController>().inkLevel += 1;
             pl.GetComponent<PlayerController>().inkCheck = true;
         }
+        else if(pickupBehaviourID == 3)
+        {
+            if(pl.GetComponent<PlayerController>().hallucinateLevel < 12)
+            {
+                pl.GetComponent<PlayerController>().hallucinateLevel += 1;
+                pl.GetComponent<PlayerController>().hallucinateCheck = true;
+            }
+        }
+            
+        
     }
 
     

@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3802335206610999686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8856737758006047730}
+  - component: {fileID: 5671196104593857590}
+  - component: {fileID: 6961980007854515948}
+  - component: {fileID: 4199559134099028826}
+  - component: {fileID: 5653541493228210284}
+  - component: {fileID: 1199972318059268665}
+  m_Layer: 0
+  m_Name: Hallucinate Hazard
+  m_TagString: Game Piece
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8856737758006047730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802335206610999686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.269411, y: 1.08, z: 13.722271}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5671196104593857590
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802335206610999686}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &6961980007854515948
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802335206610999686}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4199559134099028826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802335206610999686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb664477c9fe72342a1f79a534680a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appliedValue: -1.25
+  repeatedDelay: 0
+  visualID: 0
+  visualPrefab:
+  - {fileID: 6727700042984961697, guid: 9c1179c09eb3ddd4aaf59d633063fbdd, type: 3}
+  - {fileID: 6727700042984961697, guid: a49c33660c9b67d4f9bc1f1dcd9c119a, type: 3}
+  - {fileID: 212346539014707482, guid: acd3e84cd21833c42acfc22ebdf3daf6, type: 3}
+  destroyOnCollect: 1
+  spawnedVisual: {fileID: 0}
+  pickupBehaviourID: 3
+  knockupStrength: 0
+  beenDeflected: 0
+  isHallucination: 0
+--- !u!114 &5653541493228210284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802335206610999686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c02395ff48d54498338e318fb57c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHallucinate: {fileID: 2100000, guid: 30d76b8e0d8cd374e8e09fe70deeebb0, type: 2}
+  midHallucinate: {fileID: 2100000, guid: 39bd89109a424444fb5377ec24f37c6a, type: 2}
+  maxHallucinate: {fileID: 2100000, guid: e315c8ee2fe056d4eb3a35aba2bdcf54, type: 2}
+--- !u!114 &1199972318059268665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802335206610999686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496df1dd7df6e324591cf322be45ef7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeSpan: 20

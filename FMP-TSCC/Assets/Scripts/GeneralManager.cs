@@ -63,7 +63,7 @@ public class GeneralManager : MonoBehaviour
             minigameID = new int[3];
             gameScore = new float[3];
 
-            minigameID[0] = 5; // should be 0, 1, 2 - changed for testing
+            minigameID[0] = 2; // should be 0, 1, 2 - changed for testing
             minigameID[1] = 8; 
             minigameID[2] = 5; //ouzo halloumi, chs,oil,jui
 
@@ -221,6 +221,9 @@ public class GeneralManager : MonoBehaviour
         GameObject tc = GameObject.Find("In-Game UI");
         tc.GetComponent<TimerController>().inBreakState = false;
         tc.GetComponent<TimerController>().inGameState = true;
+
+        GameObject spawnPoint = GameObject.FindWithTag("SpawnPoint");
+        pl.transform.position = spawnPoint.transform.position;
 
         initiatedGame++;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,9 +36,16 @@ public class PlayerController : MonoBehaviour
     public Canvas inkCanvas1;
     public Canvas inkCanvas2;
     Canvas ink;
+    [Header("Juice Details")]
+    public bool hallucinateCheck;
+    public int hallucinateLevel;
+    public GameObject cineCamera;
+    public GameObject ingSpawner;
     // Start is called before the first frame update
     void Start()
     {
+        cineCamera = GameObject.Find("Player Camera");
+        ingSpawner = GameObject.Find("Ingredient Spawning");
         Cursor.lockState = CursorLockMode.Locked;
         canMove = true;
         canJump = true;
@@ -92,6 +100,12 @@ public class PlayerController : MonoBehaviour
             InkEffect();
         }
 
+        if(hallucinateCheck)
+        {
+            hallucinateCheck = false;
+            HallucinateEffect();
+        }
+
         
         
     }
@@ -117,6 +131,31 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    void HallucinateEffect()
+    {
+        if(hallucinateLevel == 0)
+        {
+            cineCamera.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = 50;
+        }
+        else if(hallucinateLevel > 0)
+        {
+            cineCamera.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = (50 + (hallucinateLevel * 5));
+
+            if(hallucinateLevel > 9)
+            {
+                ingSpawner.GetComponent<IngredientSpawning>().dualSpawnWeightOutOfTen = 5;
+            }
+            else if(hallucinateLevel > 6)
+            {
+                ingSpawner.GetComponent<IngredientSpawning>().dualSpawnWeightOutOfTen = 4;
+            }
+            else if(hallucinateLevel > 3)
+            {
+                ingSpawner.GetComponent<IngredientSpawning>().dualSpawnWeightOutOfTen = 3;
+            }
+        }
+
+    }
     void InkEffect() //layers semi-transparent canvases to progressively add inkiness
     {
         if(inkLevel == 1)
@@ -225,7 +264,11 @@ public class PlayerController : MonoBehaviour
         if(isGrounded == false)
         {
             rb.AddForce(Vector3.down * calcGravity, ForceMode.Impulse);
-            calcGravity += (calcGravity * 0.02f);
+
+            if(calcGravity < 30f)
+            {
+                calcGravity += (calcGravity * 0.02f);
+            }
         }
     }
 
