@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PauseAndSettings : MonoBehaviour
 {
     public Canvas pauseMenu;
-    bool isPaused;
+    public bool isPaused;
     public bool canPause;
     public Transform[] spawnSlot; 
     [Header("Tutorial Prefabs")]
@@ -51,6 +51,7 @@ public class PauseAndSettings : MonoBehaviour
 
     void OpenPause()
     {
+        isPaused = true;
         pauseMenu.enabled = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -61,6 +62,7 @@ public class PauseAndSettings : MonoBehaviour
 
     public void OnClosePause()
     {
+        isPaused = false;
         pauseMenu.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;

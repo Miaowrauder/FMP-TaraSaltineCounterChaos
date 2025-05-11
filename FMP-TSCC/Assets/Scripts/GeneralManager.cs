@@ -63,7 +63,7 @@ public class GeneralManager : MonoBehaviour
             minigameID = new int[3];
             gameScore = new float[3];
 
-            minigameID[0] = 2; // should be 0, 1, 2 - changed for testing
+            minigameID[0] = 1; // should be 0, 1, 2 - changed for testing
             minigameID[1] = 8; 
             minigameID[2] = 5; //ouzo halloumi, chs,oil,jui
 
@@ -281,6 +281,11 @@ public class GeneralManager : MonoBehaviour
         
         pl.GetComponent<PlayerController>().canMove = true;
         pl.GetComponent<PlayerController>().canGravity = true;
+        pl.GetComponent<PlayerController>().canFly = false;
+        pl.GetComponent<PlayerController>().canBat = false;
+        pl.GetComponent<PlayerController>().canWhisk = false;
+        pl.GetComponent<DodgeController>().isActive = false;
+        pl.GetComponent<PoundController>().isActive = false;
         
         if(game >= minigameID.Length)
         {

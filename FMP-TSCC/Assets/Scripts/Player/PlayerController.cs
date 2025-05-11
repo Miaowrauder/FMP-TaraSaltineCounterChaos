@@ -41,11 +41,19 @@ public class PlayerController : MonoBehaviour
     public int hallucinateLevel;
     public GameObject cineCamera;
     public GameObject ingSpawner;
+    [Header("Whisk Details")]
+    public float whiskRadius;
+    public GameObject whiskVisual;
+    public float ingsGained;
+    public bool canWhisk;
+
+    GameObject pm;
     // Start is called before the first frame update
     void Start()
     {
         cineCamera = GameObject.Find("Player Camera");
         ingSpawner = GameObject.Find("Ingredient Spawning");
+        pm = GameObject.Find("Pause Manager");
         Cursor.lockState = CursorLockMode.Locked;
         canMove = true;
         canJump = true;
@@ -89,9 +97,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(canBat && Input.GetKeyDown(KeyCode.Mouse0))
+        if(canBat && Input.GetKeyDown(KeyCode.Mouse0) && (pm.GetComponent<PauseAndSettings>().isPaused == false))
         {
             BatAway();
+        }
+
+        if(canWhisk && Input.GetKeyDown(KeyCode.Mouse0) && (pm.GetComponent<PauseAndSettings>().isPaused == false))
+        {
+            Whisk();
         }
 
         if(inkCheck)
@@ -130,7 +143,22 @@ public class PlayerController : MonoBehaviour
         
         
     }
+    void Whisk()
+    {
+        Collider[] hitSlimes = Physics.OverlapSphere(this.transform.position, whiskRadius);
 
+        GameObject whisk = Instantiate(whiskVisual, this.transform.position, Quaternion.identity);
+
+        for(int i = 0; i < hitSlimes.Length; i++)
+        {
+            if(hitSlimes[i].gameObject.tag == "Slime")
+            {
+                this.gameObject.GetComponent<IngredientHolder>().heldIngredients += ingsGained;  
+                this.gameObject.GetComponent<IngredientHolder>().update = true;
+            }
+            
+        }
+    }
     void HallucinateEffect()
     {
         if(hallucinateLevel == 0)
