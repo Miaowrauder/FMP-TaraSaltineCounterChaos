@@ -175,7 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6568918bcbe2b49b13be56c0091848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatAura: {fileID: 212346539014707482, guid: 597bab08ca7b1d44fbc30ae8bc0b6d1b, type: 3}
+  heatAura: {fileID: 3324749047073996672, guid: 444e0f86ce087bd4bac5c8f9dbc69dca,
+    type: 3}
   angerState: 0
   triggerHeat: 0
   triggerCool: 0

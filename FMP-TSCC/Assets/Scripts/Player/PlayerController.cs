@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     public Transform eggSpotHeld;
     public Transform eggSpotBelow;
     public Transform holdSpot;
+    
+    GameObject tui;
 
     GameObject pm;
     // Start is called before the first frame update
@@ -347,6 +349,12 @@ public class PlayerController : MonoBehaviour
         {
             GameObject spawnPoint = GameObject.FindWithTag("SpawnPoint");
             this.transform.position = spawnPoint.transform.position;
+
+            tui = GameObject.Find("Tara UI"); //concerned reaction
+            tui.GetComponent<TaraUiController>().faceID = 2;
+            tui.GetComponent<TaraUiController>().textID = 2;
+            tui.GetComponent<TaraUiController>().trigger = true;
+        
         }
     }
 

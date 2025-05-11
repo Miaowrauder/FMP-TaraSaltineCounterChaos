@@ -20,6 +20,7 @@ public class PickupBehaviour : MonoBehaviour
     [Header("Miscellaneous")]
     public bool beenDeflected;
     public bool isHallucination;
+    GameObject tui;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +86,21 @@ public class PickupBehaviour : MonoBehaviour
 
     void PickupEffect()
     {
+        if(appliedValue > 0) //positive reaction
+        {
+            tui = GameObject.Find("Tara UI");
+            tui.GetComponent<TaraUiController>().faceID = 0;
+            tui.GetComponent<TaraUiController>().textID = 0;
+            tui.GetComponent<TaraUiController>().trigger = true;
+        }
+        else if(appliedValue < 0) //neg reaction
+        {
+            tui = GameObject.Find("Tara UI");
+            tui.GetComponent<TaraUiController>().faceID = 1;
+            tui.GetComponent<TaraUiController>().textID = 1;
+            tui.GetComponent<TaraUiController>().trigger = true;
+        }
+
         Rigidbody rb = pl.GetComponent<Rigidbody>();
         //0 is no behaviour
         if(pickupBehaviourID == 1) //knockup

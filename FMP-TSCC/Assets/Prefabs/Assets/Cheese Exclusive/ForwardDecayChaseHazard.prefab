@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb664477c9fe72342a1f79a534680a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appliedValue: 5
+  appliedValue: -5
   repeatedDelay: 0
   visualID: 1
   visualPrefab:
@@ -113,8 +113,11 @@ MonoBehaviour:
   - {fileID: 6727700042984961697, guid: a49c33660c9b67d4f9bc1f1dcd9c119a, type: 3}
   - {fileID: 212346539014707482, guid: acd3e84cd21833c42acfc22ebdf3daf6, type: 3}
   destroyOnCollect: 1
+  spawnedVisual: {fileID: 0}
   pickupBehaviourID: 0
   knockupStrength: 0
+  beenDeflected: 0
+  isHallucination: 0
 --- !u!114 &2844228743827621099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,12 +131,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  homeSpeed: 0
   isStop: 0
   isDown: 0
   isForward: 1
   isDecay: 1
+  isHome: 0
+  isExplodeOnStop: 0
   shadowPrefab: {fileID: 7563828887424938245, guid: 52edf0f890562684aa61b3686cab3b1c,
     type: 3}
+  explodePrefab: {fileID: 0}
   castPos: {fileID: 0}
   layerMask:
     serializedVersion: 2

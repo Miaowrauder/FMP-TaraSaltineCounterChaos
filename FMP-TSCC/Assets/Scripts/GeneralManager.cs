@@ -20,7 +20,7 @@ public class GeneralManager : MonoBehaviour
     public int game;
     public Canvas endCanvas;
     public TMP_Text endScore;
-    GameObject tc, dpc;
+    GameObject tc, dpc, tui;
 
     int initiatedGame, initiatedBreak;
     
@@ -293,6 +293,7 @@ public class GeneralManager : MonoBehaviour
         pl.GetComponent<PlayerController>().canGravity = true;
         pl.GetComponent<PlayerController>().canFly = false;
         pl.GetComponent<PlayerController>().canBat = false;
+        pl.GetComponent<PlayerController>().canJump = true;
         pl.GetComponent<PlayerController>().canWhisk = false;
         pl.GetComponent<DodgeController>().isActive = false;
         pl.GetComponent<PoundController>().isActive = false;
@@ -304,6 +305,12 @@ public class GeneralManager : MonoBehaviour
         }
 
          initiatedBreak++;
+
+            tui = GameObject.Find("Tara UI"); //congrats reaction
+            tui.GetComponent<TaraUiController>().faceID = 3;
+            tui.GetComponent<TaraUiController>().textID = 3;
+            tui.GetComponent<TaraUiController>().trigger = true;
+        
 
         
         

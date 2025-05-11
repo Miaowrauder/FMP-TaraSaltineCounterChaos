@@ -27,11 +27,6 @@ public class IngredientMove : MonoBehaviour
         if(isForward)
         {
             transform.Translate(Vector3.forward * (Time.deltaTime * speed));
-
-            if(isDecay && (speed > 0f))
-            {
-                speed -= 0.001f;
-            }
         }
         else if(isDown)
         {
@@ -45,6 +40,14 @@ public class IngredientMove : MonoBehaviour
             this.transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * homeSpeed);
         }
         
+    }
+
+    void FixedUpdate()
+    {
+        if(isDecay && (speed > 0f))
+        {
+                speed -= 0.01f;
+        }
     }
 
     public void OnTriggerEnter(Collider coll)

@@ -63,6 +63,7 @@ public class ChickenController : MonoBehaviour
     private IEnumerator End() //to reset player variables - ingredient spawning and spawned stuff reset themeselves
     {
         yield return new WaitForSeconds(0.95f);
+        pl.GetComponent<PlayerController>().canJump = true;
         
     }
 }
