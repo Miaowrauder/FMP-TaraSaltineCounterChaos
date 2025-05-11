@@ -559,7 +559,7 @@ GameObject:
   - component: {fileID: 7836475396220934270}
   m_Layer: 0
   m_Name: Oil Map
-  m_TagString: Game Piece
+  m_TagString: WindCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
